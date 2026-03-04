@@ -9,7 +9,7 @@ public class Biblioteca{
         listadeLivros.add(livro);
     }
 
-    void listar(String livro){
+    void listar(){
         System.out.println("=== LIVROS DA BIBLIOTECA ===");
         for(Livro livros : listadeLivros){
           livros.exibir();
