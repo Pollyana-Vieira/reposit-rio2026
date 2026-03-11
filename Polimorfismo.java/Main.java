@@ -1,10 +1,10 @@
 // Classe principal
-public class SistemaPagamento {
+public class Main {
 
     public static void main(String[] args) {
 
         // Criando objetos usando polimorfismo
-        Pagamento pagamento1 = new CartaoCredito();
+        Pagamento pagamento1 = new Cartao();
         Pagamento pagamento2 = new Pix();
 
         // Chamando o mesmo método para objetos diferentes
