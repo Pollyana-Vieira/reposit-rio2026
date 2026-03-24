@@ -29,7 +29,7 @@ class Telas {
         System.out.println("====Menu Conta====");
         System.out.println("---- SUA CONTA ----");
         System.out.println("Seja bem-vindo!");
-        System.out.println();
+        System.out.println("SALDO: R$ %.2f%n");
         System.out.println("1-Depositar");
         System.out.println("2-Sacar");
         System.out.println("3-Transferir");
@@ -37,6 +37,17 @@ class Telas {
         System.out.println("5-Sair");
         System.out.println("Escolha uma opção: ");
         System.out.println("======================");
+    }
+
+    public static void cabeçalhoCadastro(){
+        limparTela();
+        System.out.println("\n=====CADASTRO=====");
+       
+    }
+
+    public static void cabeçalhoLogin(){
+        limparTela();
+        System.out.println("\n=======LOGIN========");
     }
 
     public static String lerTexto(String label){
