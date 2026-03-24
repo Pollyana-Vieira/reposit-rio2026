@@ -42,18 +42,28 @@ class Cliente {
     }
 
     // set
-    public void setNome(String nome) {
-        // validar se existe nome e sobrenome
-        this.nome = nome;
+    public boolean setNome(String nome) {
+        // validar se existe nome e sobrenome   {
+         if(nome == null|| nome.trim().split("\\+s").length < 2){
+            return false;
+        }                                            
+        this.nome = nome.trim();  
+        return true;                                    
     }
 
-    public void setCPF(String CPF) {
+    public boolean setCPF(String CPF) {
         // validar se o CPF existe
+        if(CPF == null){
+         return false;
+        }
         this.CPF = CPF;
     }
 
-    public void setDataDeNascimento(String dataDeNascimento) {
+    public boolean setDataDeNascimento(String dataDeNascimento) {
         // validar se a data de nascimento existe
+        if(){
+            
+        }
         this.dataDeNascimento = dataDeNascimento;
     }
 
