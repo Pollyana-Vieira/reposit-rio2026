@@ -51,7 +51,7 @@ class Cliente {
         return true;                                    
     }
 
-    public boolean setCPF(String CPF) {
+    public boolean setCPF(boolean CPF) {
         // validar se o CPF existe
         if(CPF == null){
          return false;
