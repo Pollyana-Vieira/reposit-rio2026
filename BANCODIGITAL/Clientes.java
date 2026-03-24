@@ -61,8 +61,8 @@ class Cliente {
 
     public boolean setDataDeNascimento(String dataDeNascimento) {
         // validar se a data de nascimento existe
-        if(){
-            
+        if(){ // vai usar vetor integer.parseInt...
+
         }
         this.dataDeNascimento = dataDeNascimento;
     }
