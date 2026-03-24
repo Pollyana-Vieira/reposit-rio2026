@@ -1,14 +1,24 @@
+import java.util.Scanner;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 class Cliente {
+
+    private static final int IDADE_MINIMA = 16;
+    private static final int ANO_MINIMO = 1900;
+
     private String nome;
     private String CPF;
-    private String dataDeNascimento;
+    private LocalDate dataDeNascimento;
     private String numeroDeConta;
     private String senha;
     private double saldo;
     private boolean bloqueada;
     private int tentativas;
 
-    // get
+    // getters
+
     public String getNome() {
         return this.nome;
     }
@@ -17,7 +27,7 @@ class Cliente {
         return this.CPF;
     }
 
-    public String getDataDeNascimento() {
+    public LocalDate getDataDeNascimento() {
         return this.dataDeNascimento;
     }
 
@@ -41,7 +51,8 @@ class Cliente {
         return this.tentativas;
     }
 
-    // set
+    // setters
+
     public boolean setNome(String nome) {
         // validar se existe nome e sobrenome   {
          if(nome == null|| nome.trim().split("\\+s").length < 2){
@@ -51,7 +62,7 @@ class Cliente {
         return true;                                    
     }
 
-    public boolean setCPF(boolean CPF) {
+    public boolean setCPF(String CPF) {
         // validar se o CPF existe
         if(CPF == null){
          return false;
@@ -59,12 +70,36 @@ class Cliente {
         this.CPF = CPF;
     }
 
-    public boolean setDataDeNascimento(String dataDeNascimento) {
+    public boolean setDataDeNascimento(String data) {
         // validar se a data de nascimento existe
-        if(){ // vai usar vetor integer.parseInt...
-
+        if(data == null){
+            return false;
         }
-        this.dataDeNascimento = dataDeNascimento;
+
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        LocalDate hoje = LocalDate.now();//verifica a idade que a pessoa tem hj 
+
+        try{
+            LocalDate dataDeNascimento = LocalDate.parse(data, formatador);//parse  é o processo de converter uma String ou outro formato de dados em um objeto Java estruturado (ex: converter "123" para int ou "2023-10-27" para LocalDate).
+            if(dataDeNascimento.getYear() < ANO_MINIMO){
+                return false;
+            }
+
+            LocalDate idadeMinima = hoje.minusYears(IDADE_MINIMA));
+
+            if(dataDeNascimento.isAfter(idadeMinima)){
+                return false;
+            }
+
+            this.dataDeNascimento = dataDeNascimento;
+            return true;
+
+        }catch(DateTimeException e ){
+            return false;
+        }
+        
+        
     }
 
     public void setNumeroDeConta(String numeroDeConta) {
