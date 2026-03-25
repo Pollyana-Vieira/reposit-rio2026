@@ -68,11 +68,24 @@ class Cliente {
      // CPF
 
     public boolean setCPF(String CPF) {
-        // validar se o CPF existe
-        if (CPF == null) {
+        String CPFLimpo;
+        // validar se o CPF é válido
+
+       if(CPF == null){
+         return false;
+        }
+        //validar os 11 digitos
+        if(CPF.length() != 11 && CPF.length() != 14 ){
             return false;
         }
-        this.CPF = CPF;
+        
+        CPFLimpo = CPF.length() == 14 ? CPF.replace(" [^0-9]", " ") : CPF; 
+        
+      this.CPF = CPFLimpo;
+      return true;
+        
+       
+        
     }
 
      // DATA DE NASCIMENTO
