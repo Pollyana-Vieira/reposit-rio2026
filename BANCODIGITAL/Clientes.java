@@ -7,7 +7,7 @@ class Cliente {
 
     private static final int IDADE_MINIMA = 16;
     private static final int ANO_MINIMO = 1900;
-     private static final DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private String nome;
     private String CPF;
@@ -54,7 +54,7 @@ class Cliente {
 
     // setters
 
-     // NOME
+    // NOME
 
     public boolean setNome(String nome) {
         // validar se existe nome e sobrenome {
@@ -65,38 +65,39 @@ class Cliente {
         return true;
     }
 
-     // CPF
+    // CPF
 
     public boolean setCPF(String CPF) {
         String CPFLimpo;
         // validar se o CPF é válido
 
-       if(CPF == null){
-         return false;
+        if (CPF == null) {
+            return false;
         }
-        //validar os 11 digitos
-        if(CPF.length() != 11 && CPF.length() != 14 ){
+        // validar os 11 digitos
+
+        CPFLimpo = CPF.replace(" [^0-9]", " ");
+
+        if (CPF.length() != 11 ) {
+            return false;
+        }
+
+        if(!ValidaCPF.isCPF(CPFLimpo)){
             return false;
         }
         
-        CPFLimpo = CPF.length() == 14 ? CPF.replace(" [^0-9]", " ") : CPF; 
-        
-      this.CPF = CPFLimpo;
-      return true;
-        
-       
-        
+        this.CPF = CPFLimpo;
+        return true;
+
     }
 
-     // DATA DE NASCIMENTO
+    // DATA DE NASCIMENTO
 
     public boolean setDataDeNascimento(String data) {
         // validar se a data de nascimento existe
         if (data == null) {
             return false;
         }
-
-       
 
         LocalDate hoje = LocalDate.now();// verifica a idade que a pessoa tem hj
 
@@ -125,35 +126,35 @@ class Cliente {
 
     }
 
-     // NÚMERO DE CONTA
+    // NÚMERO DE CONTA
 
     public void setNumeroDeConta(String numeroDeConta) {
         // validar se o número de conta existe
         this.numeroDeConta = numeroDeConta;
     }
 
-     // SENHA
+    // SENHA
 
     public void setSenha(String senha) {
         // verificar se a senha existe
         this.senha = senha;
     }
 
-     //SALDO
+    // SALDO
 
     public void setSaldo(double saldo) {
         // verificar se o saldo existe
         this.saldo = saldo;
     }
 
-     //BLOQUEADA
+    // BLOQUEADA
 
     public void setBloqueada(boolean bloqueada) {
         // verificar se a conta esta bloqueada
         this.bloqueada = bloqueada;
     }
 
-     //TENTATIVAS
+    // TENTATIVAS
 
     public void setTentativas(int tentativas) {
         // verificar quantas tentativas foram
