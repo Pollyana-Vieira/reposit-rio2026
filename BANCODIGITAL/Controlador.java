@@ -15,10 +15,17 @@ class Controlador {
         // coletar os dados
 
         //nome e sua validação
-
+        String nomeInformado;
         
-        String nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
-        c1.setNome(nomeInformado);
+        do{
+
+           nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
+
+        }while(!c1.setNome(nomeInformado));
+
+
+       
+       
 
 
         //cpf e sua validação
