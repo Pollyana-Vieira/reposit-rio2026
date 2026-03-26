@@ -92,7 +92,7 @@ class Telas {
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         System.out.println("\n erro " + texto);
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-        System.out.println("\n Pression");
+        System.out.println("\n Pressione a tecla Enter para voltar");
         return sc.nextLine();
     }
 }
