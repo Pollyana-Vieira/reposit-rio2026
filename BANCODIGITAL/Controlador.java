@@ -37,6 +37,14 @@ class Controlador {
         sc.nextLine();
         getNome();
 
+        System.out.println("CPF");
+        sc.nextLine();
+        getCPF();
+
+        System.out.println("Data de nascimento");
+        sc.nextLine();
+        getDataDeNascimento();
+
 
     }
 
