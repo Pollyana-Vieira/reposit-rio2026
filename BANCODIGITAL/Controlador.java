@@ -5,25 +5,32 @@ class Controlador {
     public static void criarConta() {
         Scanner sc = new Scanner(System.in);
 
-       Cliente c1 = new Cliente();
+        // cabeçalho de cadastro
+        Telas.cabecalhoCadastro();
 
-        // cabeçalho
-        System.out.println("\n=====CADASTRO=====");
-        System.out.println("-------SEJA BEM-VINDO---------");
-        System.out.println("====BANCO DIGITAL====");
+        //instanciando o objeto
+        Cliente c1 = new Cliente();
+
 
         // coletar os dados
-        System.out.println("Digite seu nome completo: ");
-        String nome = sc.nextLine();
-        c1.setNome(nome);
+
+        //nome e sua validação
+
+        
+        String nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
+        c1.setNome(nomeInformado);
+
+
+        //cpf e sua validação
+        String CPFInformado = Telas.lerTexto("Digite seu CPF: ");
 
         System.out.println("Digite seu CPF: ");
         String CPF = sc.nextLine();
-        c1.setCPF(CPF);
+        c1.setCPF("CPF");
 
         System.out.println("Digite sua data de nascimento: ");
         String data = sc.nextLine();
-        c1.setDataDeNascimento(data);
+        c1.setDataDeNascimento("data");
 
 
 

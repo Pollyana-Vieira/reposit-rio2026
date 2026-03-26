@@ -39,7 +39,7 @@ class Telas {
         System.out.println("======================");
     }
 
-    public static void cabeçalhoCadastro(){
+    public static void cabecalhoCadastro(){
         limparTela();
         System.out.println("\n=====CADASTRO=====");
        
