@@ -20,6 +20,7 @@ class Controlador {
         do{
 
            nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
+           //fazer um laço if aqui
 
         }while(!c1.setNome(nomeInformado));
 
