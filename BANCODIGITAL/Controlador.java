@@ -3,65 +3,55 @@ import java.util.Scanner;
 class Controlador {
 
     public static void criarConta() {
-            Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-                    // cabeçalho de cadastro
-                            Telas.cabecalhoCadastro();
+        // cabeçalho de cadastro
+        Telas.cabecalhoCadastro();
 
-                                    //instanciando o objeto
-                                            Cliente c1 = new Cliente();
+        // instanciando o objeto
+        Cliente c1 = new Cliente();
 
+        // coletar os dados
 
-                                                    // coletar os dados
+        // nome e sua validação
+        String nomeInformado;
 
-                                                            //nome e sua validação
-                                                                    String nomeInformado;
-                                                                            
-                                                                                    do{
+        do {
 
-                                                                                               nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
-                                                                                                          //fazer um laço if aqui
+            nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
+            // fazer um laço if aqui
 
-                                                                                                                  }while(!c1.setNome(nomeInformado));
+        } while (!c1.setNome(nomeInformado));
 
+        // cpf e sua validação
+        String CPFInformado = Telas.lerTexto("Digite seu CPF: ");
 
-                                                                                                                         
-                                                                                                                                
+        System.out.println("Digite seu CPF: ");
+        String CPF = sc.nextLine();
+        c1.setCPF("CPF");
 
+        System.out.println("Digite sua data de nascimento: ");
+        String data = sc.nextLine();
+        c1.setDataDeNascimento("data");
 
-                                                                                                                                        //cpf e sua validação
-                                                                                                                                                String CPFInformado = Telas.lerTexto("Digite seu CPF: ");
+    }
 
-                                                                                                                                                        System.out.println("Digite seu CPF: ");
-                                                                                                                                                                String CPF = sc.nextLine();
-                                                                                                                                                                        c1.setCPF("CPF");
+    public static void EnviarParaCentralBancaria() {
 
-                                                                                                                                                                                System.out.println("Digite sua data de nascimento: ");
-                                                                                                                                                                                        String data = sc.nextLine();
-                                                                                                                                                                                                c1.setDataDeNascimento("data");
+        System.out.println("Em breve...");
 
+        System.out.println("Nome");
+        sc.nextLine();
+        getNome();
 
+        System.out.println("CPF");
+        sc.nextLine();
+        getCPF();
 
-                                                                                                                                                                                                    }
-                                                                                                                                                                                                        
-                                                                                                                                                                                                            public static void EnviarParaCentralBancaria(){
+        System.out.println("Data de nascimento");
+        sc.nextLine();
+        getDataDeNascimento();
 
-                                                                                                                                                                                                                    System.out.println("Em breve...");
+    }
 
-                                                                                                                                                                                                                            System.out.println("Nome");
-                                                                                                                                                                                                                                    sc.nextLine();
-                                                                                                                                                                                                                                            getNome();
-
-                                                                                                                                                                                                                                                    System.out.println("CPF");
-                                                                                                                                                                                                                                                            sc.nextLine();
-                                                                                                                                                                                                                                                                    getCPF();
-
-                                                                                                                                                                                                                                                                            System.out.println("Data de nascimento");
-                                                                                                                                                                                                                                                                                    sc.nextLine();
-                                                                                                                                                                                                                                                                                            getDataDeNascimento();
-
-
-                                                                                                                                                                                                                                                                                                }
-
-                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                
+}
