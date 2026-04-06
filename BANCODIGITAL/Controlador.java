@@ -1,57 +1,82 @@
-import java.util.Scanner;
-
-class Controlador {
+public class Controlador {
+    private static final CentralBancaria central = new CentralBancaria();
 
     public static void criarConta() {
-        Scanner sc = new Scanner(System.in);
-
-        // cabeçalho de cadastro
         Telas.cabecalhoCadastro();
+        Cliente cliente = new Cliente();
 
-        // instanciando o objeto
-        Cliente c1 = new Cliente();
-
-        // coletar os dados
-
-        // nome e sua validação
+        // Nome
         String nomeInformado;
-
         do {
+            Telas.limparTela();
+            nomeInformado = Telas.lerTexto("Digite o nome completo: ");
+            if (!cliente.setNome(nomeInformado)) {
+                Telas.mensagem("Nome invÃ¡lido!", true);
+            }
+        } while (!cliente.setNome(nomeInformado));
 
-            nomeInformado = Telas.lerTexto("Digite seu nome completo: ");
-            // fazer um laço if aqui
+        // CPF
+        String cpfInformado;
+        do {
+            Telas.limparTela();
+            cpfInformado = Telas.lerTexto("Digite o CPF: ");
+            if (!cliente.setCpf(cpfInformado)) {
+                Telas.mensagem("CPF invÃ¡lido.", true);
+            }
+        } while (!cliente.setCpf(cpfInformado));
 
-        } while (!c1.setNome(nomeInformado));
+        // Data de Nascimento
+        String data;
+        do {
+            Telas.limparTela();
+            data = Telas.lerTexto("Data de nascimento (dd/mm/aaaa)");
+            if (!cliente.setDataNascimento(data)) {
+                Telas.mensagem("Data de nascimento invÃ¡lida.", true);
+            }
+        } while (!cliente.setDataNascimento(data));
 
-        // cpf e sua validação
-        String CPFInformado = Telas.lerTexto("Digite seu CPF: ");
+        // Envia Ã  CentralBancaria
+        System.out.println("Enviando dados para a central...");
+        String resultado = central.cadastrar(
+                cliente.getNome(),
+                cliente.getCpf(),
+                cliente.getDataNascimento());
 
-        System.out.println("Digite seu CPF: ");
-        String CPF = sc.nextLine();
-        c1.setCPF("CPF");
+        if (resultado.startsWith("ERRO")) {
+            Telas.mensagem(resultado, true);
+            return;
+        }
 
-        System.out.println("Digite sua data de nascimento: ");
-        String data = sc.nextLine();
-        c1.setDataDeNascimento("data");
+        String numeroConta = resultado;
 
+        // Solicitar Senha
+        Telas.limparTela();
+        System.out.println("Conta criada com sucesso!");
+        System.out.println("NÃºmero da conta: " + numeroConta);
+        Telas.separador();
+
+        String senha, confirma;
+        do {
+            senha = Telas.lerTexto("Crie sua senha (4 dÃ­gitos numÃ©ricos)");
+            confirma = Telas.lerTexto("Confirme sua senha");
+            if (!senha.equals(confirma)) {
+                Telas.mensagem("Senhas nÃ£o conferem. Tente novamente.", true);
+            } else if (!senha.matches("\\d{4}")) {
+                Telas.mensagem("Senha invÃ¡lida. Use exatamente 4 dÃ­gitos numÃ©ricos.", true);
+            }
+        } while (!senha.equals(confirma) || !senha.matches("\\d{4}"));
+
+        central.cadastrarSenha(numeroConta, senha);
+        Telas.mensagem("Cadastro concluÃ­do! NÃºmero da conta: " + numeroConta, false);
     }
 
-    public static void EnviarParaCentralBancaria() {
+    public static void acessarConta() {
+        Telas.cabecalhoLogin();
 
-        System.out.println("Em breve...");
+        String numeroConta = Telas.lerTexto("NÃºmero da conta");
+        String senha = Telas.lerTexto("Senha");
 
-        System.out.println("Nome");
-        sc.nextLine();
-        getNome();
-
-        System.out.println("CPF");
-        sc.nextLine();
-        getCPF();
-
-        System.out.println("Data de nascimento");
-        sc.nextLine();
-        getDataDeNascimento();
-
+        // Login completo serÃ¡ implementado na Aula 06, com a CentralBancaria.
+        Telas.mensagem("Login recebido para a conta " + numeroConta + " (em breve).", false);
     }
-
 }
