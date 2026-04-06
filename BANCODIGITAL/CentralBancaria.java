@@ -10,18 +10,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*
- * CentralBancaria â€” backend do sistema bancÃ¡rio.
+ * CentralBancaria — backend do sistema bancário.
  *
- * Toda a complexidade de rede e persistÃªncia fica aqui, invisÃ­vel para o
- * Controlador. Isso Ã© abstraÃ§Ã£o: os alunos usam mÃ©todos simples sem precisar
+ * Toda a complexidade de rede e persistência fica aqui, invisível para o
+ * Controlador. Isso é abstração: os alunos usam métodos simples sem precisar
  * saber como o HTTP ou o JSON funcionam por dentro.
  *
  * Endpoint: https://mockapi.jbmiranda.vps-kinghost.net/senai-banco-digital
- *   POST   â†’ cadastrar nova conta
- *   GET    â†’ buscar contas
- *   PUT /id â†’ atualizar conta existente
+ *   POST   → cadastrar nova conta
+ *   GET    → buscar contas
+ *   PUT /id → atualizar conta existente
  *
- * NÃºmeros de conta: mÃºltiplos de 10, quatro dÃ­gitos, iniciando em 1000.
+ * Números de conta: múltiplos de 10, quatro dígitos, iniciando em 1000.
  */
 public class CentralBancaria {
 
@@ -186,13 +186,11 @@ public class CentralBancaria {
     }
 
     /*
-     * Parseia a resposta do GET /all: {"value":[...], "Count":N}
+     * Parseia a resposta do GET: array direto [{...}, {...}]
      */
     private List<Registro> parseTodos(String json) {
         List<Registro> lista = new ArrayList<>();
-        int idx = json.indexOf("\"value\"");
-        if (idx == -1) return lista;
-        int arrInicio = json.indexOf("[", idx);
+        int arrInicio = json.indexOf("[");
         if (arrInicio == -1) return lista;
         int pos = arrInicio + 1;
         while (pos < json.length()) {
@@ -217,7 +215,7 @@ public class CentralBancaria {
     }
 
     // =========================================================
-    // CONSTRUÃ‡ÃƒO DE JSON
+    // CONSTRUÇÃO DE JSON
     // =========================================================
 
     private String escapar(String s) {
@@ -273,11 +271,11 @@ public class CentralBancaria {
     }
 
     /*
-     * Gera o prÃ³ximo nÃºmero de conta: mÃºltiplo de 10, 4 dÃ­gitos, a partir
-     * de 1000. Busca o maior numeroConta jÃ¡ existente e soma 10.
+     * Gera o próximo número de conta: múltiplo de 10, 4 dígitos, a partir
+     * de 1000. Busca o maior numeroConta já existente e soma 10.
      */
     private String proximaNumeroConta() throws Exception {
-        int max = 990; // se nÃ£o houver contas, a primeira serÃ¡ 1000
+        int max = 990; // se não houver contas, a primeira será 1000
         for (Registro r : buscarTodos()) {
             try {
                 int n = Integer.parseInt(r.numeroConta);
@@ -292,15 +290,15 @@ public class CentralBancaria {
     }
 
     // =========================================================
-    // API PÃšBLICA
+    // API PÚBLICA
     // =========================================================
 
     /**
      * Cadastra uma nova conta com os dados do cliente.
      *
      * @return numeroConta gerado (ex: "1000") em caso de sucesso.
-     *         "ERRO:CPF_JA_CADASTRADO" se o CPF jÃ¡ existir.
-     *         "ERRO:..." para falhas de comunicaÃ§Ã£o.
+     *         "ERRO:CPF_JA_CADASTRADO" se o CPF já existir.
+     *         "ERRO:..." para falhas de comunicação.
      */
     public String cadastrar(String nome, String cpf, String dataNascimento) {
         try {
@@ -325,8 +323,8 @@ public class CentralBancaria {
     }
 
     /**
-     * Define a senha de uma conta recÃ©m-criada.
-     * Deve ser chamado logo apÃ³s cadastrar() com sucesso.
+     * Define a senha de uma conta recém-criada.
+     * Deve ser chamado logo após cadastrar() com sucesso.
      *
      * @return true se a senha foi registrada com sucesso.
      */
@@ -345,13 +343,13 @@ public class CentralBancaria {
     /**
      * Realiza o login do cliente.
      *
-     * PossÃ­veis retornos:
-     *   "OK"               â†’ login bem-sucedido; cliente Ã© populado com nome,
+     * Possíveis retornos:
+     *   "OK"               → login bem-sucedido; cliente é populado com nome,
      *                        numeroConta e saldo.
-     *   "CONTA_INEXISTENTE"â†’ nÃºmero de conta nÃ£o encontrado.
-     *   "BLOQUEADA"        â†’ conta bloqueada por tentativas excessivas.
-     *   "SENHA_INCORRETA"  â†’ senha errada; apÃ³s 3 erros a conta Ã© bloqueada.
-     *   "ERRO:..."         â†’ falha de comunicaÃ§Ã£o.
+     *   "CONTA_INEXISTENTE"→ número de conta não encontrado.
+     *   "BLOQUEADA"        → conta bloqueada por tentativas excessivas.
+     *   "SENHA_INCORRETA"  → senha errada; após 3 erros a conta é bloqueada.
+     *   "ERRO:..."         → falha de comunicação.
      *
      * @param cliente objeto a ser populado em caso de sucesso.
      */
@@ -383,10 +381,10 @@ public class CentralBancaria {
     }
 
     /**
-     * Realiza depÃ³sito na conta do cliente.
+     * Realiza depósito na conta do cliente.
      * Atualiza o saldo do objeto cliente em caso de sucesso.
      *
-     * @return true se o depÃ³sito foi realizado com sucesso.
+     * @return true se o depósito foi realizado com sucesso.
      */
     public boolean depositar(Cliente cliente, double valor) {
         try {
@@ -405,7 +403,7 @@ public class CentralBancaria {
 
     /**
      * Realiza saque na conta do cliente.
-     * O Controlador deve validar saldo suficiente antes de chamar este mÃ©todo.
+     * O Controlador deve validar saldo suficiente antes de chamar este método.
      * Atualiza o saldo do objeto cliente em caso de sucesso.
      *
      * @return true se o saque foi realizado com sucesso.
@@ -426,12 +424,12 @@ public class CentralBancaria {
     }
 
     /**
-     * Realiza transferÃªncia entre contas.
-     * O Controlador deve validar saldo suficiente antes de chamar este mÃ©todo.
-     * DÃ©bita a origem e credita o destino em uma Ãºnica operaÃ§Ã£o lÃ³gica.
+     * Realiza transferência entre contas.
+     * O Controlador deve validar saldo suficiente antes de chamar este método.
+     * Débita a origem e credita o destino em uma única operação lógica.
      *
-     * @param contaDestino nÃºmero da conta de destino (ex: "1010").
-     * @return true se a transferÃªncia foi realizada com sucesso.
+     * @param contaDestino número da conta de destino (ex: "1010").
+     * @return true se a transferência foi realizada com sucesso.
      */
     public boolean transferir(Cliente cliente, String contaDestino, double valor) {
         try {
@@ -460,18 +458,18 @@ public class CentralBancaria {
 
     /**
      * Retorna o extrato completo da conta como lista de strings formatadas.
-     * Cada linha contÃ©m tipo de operaÃ§Ã£o, valor e data.
+     * Cada linha contém tipo de operação, valor e data.
      */
     public List<String> getExtrato(Cliente cliente) {
         List<String> extrato = new ArrayList<>();
         try {
             Registro r = buscarPorConta(cliente.getNumeroConta());
             if (r == null) {
-                extrato.add("Conta nÃ£o encontrada.");
+                extrato.add("Conta não encontrada.");
                 return extrato;
             }
             if (r.transacoes.isEmpty()) {
-                extrato.add("Nenhuma movimentaÃ§Ã£o registrada.");
+                extrato.add("Nenhuma movimentação registrada.");
                 return extrato;
             }
             for (String[] t : r.transacoes) {

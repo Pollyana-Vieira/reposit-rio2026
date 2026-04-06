@@ -11,7 +11,7 @@ public class Controlador {
             Telas.limparTela();
             nomeInformado = Telas.lerTexto("Digite o nome completo: ");
             if (!cliente.setNome(nomeInformado)) {
-                Telas.mensagem("Nome invÃ¡lido!", true);
+                Telas.mensagem("Nome invalido!", true);
             }
         } while (!cliente.setNome(nomeInformado));
 
@@ -21,7 +21,7 @@ public class Controlador {
             Telas.limparTela();
             cpfInformado = Telas.lerTexto("Digite o CPF: ");
             if (!cliente.setCpf(cpfInformado)) {
-                Telas.mensagem("CPF invÃ¡lido.", true);
+                Telas.mensagem("CPF invalido.", true);
             }
         } while (!cliente.setCpf(cpfInformado));
 
@@ -31,11 +31,11 @@ public class Controlador {
             Telas.limparTela();
             data = Telas.lerTexto("Data de nascimento (dd/mm/aaaa)");
             if (!cliente.setDataNascimento(data)) {
-                Telas.mensagem("Data de nascimento invÃ¡lida.", true);
+                Telas.mensagem("Data de nascimento invalida.", true);
             }
         } while (!cliente.setDataNascimento(data));
 
-        // Envia Ã  CentralBancaria
+        // Enviando CentralBancaria
         System.out.println("Enviando dados para a central...");
         String resultado = central.cadastrar(
                 cliente.getNome(),
