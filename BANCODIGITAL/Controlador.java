@@ -89,10 +89,13 @@ public class Controlador {
                   Telas.mensagem(numeroConta, false);em("Conta inexistente. Verifique o número e tente novamente.", true);
                     return;
                 case "BLOQUEADA":
-                    Telas.mensagem("Conta bloqueada);
+                    Telas.mensagem("Conta bloqueada devido a múltiplas tentativas", false);
                     return;
                 case "SENHA_INCORRETA":
-                    Telas.mensagem("Senha incorreta. Tentativa" + tentativa +
+                    tentativa < 3
+                    Telas.mensagem("Senha incorreta. Tentativa" + tentativa + " de 3.", false);
+                    return;
+                   
 
             }
 
