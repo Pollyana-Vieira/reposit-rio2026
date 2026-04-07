@@ -120,19 +120,19 @@ public class Controlador {
             switch (menu) {
 
             case 1:
-                System.out.println("O deposito será impresso");
+                Telas.mensagem("O deposito será impresso");
                 break;
             case 2:
-                System.out.println("O saque será impresso");
+                Telas.mensagem("O saque será impresso");
                 break;
             case 3:
-                System.out.println("A transferência será impressa");
+                Telas.mensagem("A transferência será impressa");
                 break;
             case 4:
-                System.out.println("O Extrato será impresso");
+                Telas.mensagem("O Extrato será impresso");
                 break;
             case 5:
-                System.out.println("Até logo" + cliente.getNome());
+                Telas.mensagem("Até logo" + cliente.getNome());
                 break;
             default:
                 Telas.mensagem("Opção inválida", true);    
