@@ -92,13 +92,13 @@ public class Controlador {
                     Telas.mensagem("Conta bloqueada devido a múltiplas tentativas", false);
                     return;
                 case "SENHA_INCORRETA":
-                    tentativas++
+                    tentativas ++;
                     if(tentativas < 3){
                          Telas.mensagem("Senha incorreta. Tentativa" + tentativas + " de 3.", false);
                     }
                    
                     break;  
-                defalt:
+                default:
                   Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);                      
                     return;
 
@@ -109,11 +109,15 @@ public class Controlador {
         }
     }
 
-    public static void menuDaConta(String deposito, String saque, String transferencia, String extrato) {
+    public static void menuDaConta(Cliente cliente) {
 
         int menu = Telas.lerOpcao();
 
-        switch (menu) {
+        do{
+
+            Telas.menuConta(cliente.getNome(), cliente.getSaldo());
+
+            switch (menu) {
 
             case 1:
                 System.out.println("O deposito será impresso");
@@ -128,9 +132,16 @@ public class Controlador {
                 System.out.println("O Extrato será impresso");
                 break;
             case 5:
-                System.out.println("Saindo...");
+                System.out.println("Até logo" + cliente.getNome());
                 break;
+            default:
+                Telas.mensagem("Opção inválida", true);    
         }
+            
+
+        }while(menu != 5);
+
+       
 
     }
 
