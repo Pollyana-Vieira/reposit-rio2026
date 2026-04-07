@@ -93,8 +93,8 @@ public class Controlador {
                     return;
                 case "SENHA_INCORRETA":
                     tentativas++
-                    if(tentativa < 3){
-                         Telas.mensagem("Senha incorreta. Tentativa" + tentativa + " de 3.", false);
+                    if(tentativas < 3){
+                         Telas.mensagem("Senha incorreta. Tentativa" + tentativas + " de 3.", false);
                     }
                    
                     break;  
@@ -105,22 +105,33 @@ public class Controlador {
                    
 
             }
+           
+        }
+    }
 
+    public static void menuDaConta(String deposito, String saque, String transferencia, String extrato) {
 
+        int menu = Telas.lerOpcao();
 
+        switch (menu) {
 
-
+            case 1:
+                System.out.println("O deposito será impresso");
+                break;
+            case 2:
+                System.out.println("O saque será impresso");
+                break;
+            case 3:
+                System.out.println("A transferência será impressa");
+                break;
+            case 4:
+                System.out.println("O Extrato será impresso");
+                break;
+            case 5:
+                System.out.println("Saindo...");
+                break;
         }
 
-
-        
-
-        
-
-
-
-    
-      
     }
 
 }
