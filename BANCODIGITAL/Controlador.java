@@ -52,31 +52,74 @@ public class Controlador {
         // Solicitar Senha
         Telas.limparTela();
         System.out.println("Conta criada com sucesso!");
-        System.out.println("NÃºmero da conta: " + numeroConta);
+        System.out.println("Número da conta: " + numeroConta);
         Telas.separador();
 
         String senha, confirma;
         do {
-            senha = Telas.lerTexto("Crie sua senha (4 dÃ­gitos numÃ©ricos)");
+            senha = Telas.lerTexto("Crie sua senha (4 di­gitos numericos)");
             confirma = Telas.lerTexto("Confirme sua senha");
             if (!senha.equals(confirma)) {
-                Telas.mensagem("Senhas nÃ£o conferem. Tente novamente.", true);
+                Telas.mensagem("Senhas não conferem. Tente novamente.", true);
             } else if (!senha.matches("\\d{4}")) {
-                Telas.mensagem("Senha invÃ¡lida. Use exatamente 4 dÃ­gitos numÃ©ricos.", true);
+                Telas.mensagem("Senha invalida. Use exatamente 4 digitos numericos.", true);
             }
         } while (!senha.equals(confirma) || !senha.matches("\\d{4}"));
 
         central.cadastrarSenha(numeroConta, senha);
-        Telas.mensagem("Cadastro concluÃ­do! NÃºmero da conta: " + numeroConta, false);
+        Telas.mensagem("Cadastro concluído! Número da conta: " + numeroConta, false);
     }
 
     public static void acessarConta() {
         Telas.cabecalhoLogin();
 
-        String numeroConta = Telas.lerTexto("NÃºmero da conta");
-        String senha = Telas.lerTexto("Senha");
+        String numeroConta = Telas.lerTexto("Número da conta");
+        int tentativas = 0;
+        while(tentativas > 3){
 
-        // Login completo serÃ¡ implementado na Aula 06, com a CentralBancaria.
-        Telas.mensagem("Login recebido para a conta " + numeroConta + " (em breve).", false);
+            String senha = Telas.lerTexto("Senha: " );
+            Cliente cliente = new Cliente();
+            String 
+        }
+
+
+        
+
+        
+
+        //n° da conta 
+        String numeroInformado;
+        do{
+
+            Telas.limparTela();
+            numeroInformado = Telas.lerTexto("Digite o número da conta: ");
+            if(!Cliente.setNumeroConta(numeroInformado)){
+                Telas.mensagem("Número da conta inválido", true);
+
+            }
+        }while(!Cliente.setNumeroConta(numeroInformado));
+        
+        //senha
+        String senha;
+        do{
+            Telas.limparTela();
+            senha = Telas.lerTexto("Digite a senha: ");
+            if(Cliente.setSenha(senha)){
+                Telas.mensagem("Senha inválida! Digite novamente!", true);
+
+            }
+
+        }while(Cliente.setSenha(Cliente.registrarTentativaFalha));
+
+         
+
+
+
+    
+      
     }
+
+    
+
 }
+
