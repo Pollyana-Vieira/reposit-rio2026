@@ -86,15 +86,22 @@ public class Controlador {
                     Telas.mensagem("Login bem-sucedido! Bem-Vindo!, "+ cliente.getNome() + "!",  false);
                     return;
                 case "CONTA_INEXISTENTE": 
-                  Telas.mensagem(numeroConta, false);em("Conta inexistente. Verifique o número e tente novamente.", true);
+                  Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
                     return;
                 case "BLOQUEADA":
                     Telas.mensagem("Conta bloqueada devido a múltiplas tentativas", false);
                     return;
                 case "SENHA_INCORRETA":
-                    tentativa < 3
-                    Telas.mensagem("Senha incorreta. Tentativa" + tentativa + " de 3.", false);
+                    tentativas++
+                    if(tentativa < 3){
+                         Telas.mensagem("Senha incorreta. Tentativa" + tentativa + " de 3.", false);
+                    }
+                   
+                    break;  
+                defalt:
+                  Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);                      
                     return;
+
                    
 
             }
@@ -110,39 +117,10 @@ public class Controlador {
 
         
 
-        //n° da conta 
-        String numeroInformado;
-        do{
-
-            Telas.limparTela();
-            numeroInformado = Telas.lerTexto("Digite o número da conta: ");
-            if(!Cliente.setNumeroConta(numeroInformado)){
-                Telas.mensagem("Número da conta inválido", true);
-
-            }
-        }while(!Cliente.setNumeroConta(numeroInformado));
-        
-        //senha
-        String senha;
-        do{
-            Telas.limparTela();
-            senha = Telas.lerTexto("Digite a senha: ");
-            if(Cliente.setSenha(senha)){
-                Telas.mensagem("Senha inválida! Digite novamente!", true);
-
-            }
-
-        }while(Cliente.setSenha(Cliente.registrarTentativaFalha));
-
-         
-
 
 
     
       
     }
 
-    
-
 }
-
