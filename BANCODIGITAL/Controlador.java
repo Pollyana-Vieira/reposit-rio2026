@@ -80,6 +80,26 @@ public class Controlador {
             String senha = Telas.lerTexto("Senha: " );
             Cliente cliente = new Cliente();
             String status = central.login(numeroConta, senha, cliente);
+
+            switch(status){
+                case "OK":
+                    Telas.mensagem("Login bem-sucedido! Bem-Vindo!, "+ cliente.getNome() + "!",  false);
+                    return;
+                case "CONTA_INEXISTENTE": 
+                  Telas.mensagem(numeroConta, false);em("Conta inexistente. Verifique o número e tente novamente.", true);
+                    return;
+                case "BLOQUEADA":
+                    Telas.mensagem("Conta bloqueada);
+                    return;
+                case "SENHA_INCORRETA":
+                    Telas.mensagem("Senha incorreta. Tentativa" + tentativa +
+
+            }
+
+
+
+
+
         }
 
 
