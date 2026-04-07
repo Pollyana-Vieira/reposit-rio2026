@@ -79,7 +79,7 @@ public class Controlador {
 
             String senha = Telas.lerTexto("Senha: " );
             Cliente cliente = new Cliente();
-            String 
+            String status = central.login(numeroConta, senha, cliente);
         }
 
 
