@@ -183,7 +183,7 @@ public class Controlador {
 
     private static void transferir(Cliente cliente) {
         Telas.limparTela();
-        String contaDestino = Telas.lerValor(" Conta destino: ");
+        String contaDestino = Telas.lerValor(""4" Conta destino: ");
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
         if (valor <= 0) {
