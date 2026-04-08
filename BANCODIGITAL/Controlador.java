@@ -120,15 +120,15 @@ public class Controlador {
             switch (menu) {
 
                 case 1:
-                    Telas.mensagem("O deposito será impresso", false);
+                    
                     depositar(cliente);
                     break;
                 case 2:
-                    Telas.mensagem("O saque será impresso", false);
+                    
                     sacar(cliente);
                     break;
                 case 3:
-                    Telas.mensagem("A transferência será impressa", false);
+                    
                     transferir(cliente);
                     break;
                 case 4:
@@ -183,7 +183,7 @@ public class Controlador {
 
     private static void transferir(Cliente cliente) {
         Telas.limparTela();
-        String contaDestino = Telas.lerValor(""4" Conta destino: ");
+        String contaDestino = Telas.lerValor(" Conta destino: ");
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
         if (valor <= 0) {
@@ -194,8 +194,7 @@ public class Controlador {
             Telas.mensagem("Saldo insuficiênte", false);
             return;
         }
-        Telas.mensagem("Número da conta inválido", true);
-        return;
+    
     }
 
     boolean ok = central.transferir(cliente, contaDestino, valor);
