@@ -158,5 +158,23 @@ public class Controlador {
           Telas.mensagem("Erro ao realizar o depósito!", true);
         }
     }
+    private static void sacar(Cliente cliente){
+        Telas.limparTela();
+        double valor = Telas.lerValor("Valor que deseja sacar: R$");
+        if(valor <=0){
+           Telas.mensagem("Valor inválido!", true);
+           return;
+        }
+        if(valor > cliente.getSaldo()){
+            Telas.mensagem("Saldo insuficiênte!", true);
+        }
+        boolean ok = central.sacar(cliente, valor);
+        if(ok){
+            Telas.mensagem(String.format("Saque R$ %.2f realizado com sucesso!\nSaldo atual: R$%.2f ", valor, cliente.getSaldo(), false));
+        }
+        else{
+            Telas.mensagem("Erro ao realizar o saque!", true);
+        }
+    }
 
 }
