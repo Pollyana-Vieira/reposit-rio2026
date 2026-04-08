@@ -181,17 +181,38 @@ public class Controlador {
         }
     }
 
-    private static void transferir(Cliente cliente, int numeroConta, double valor){
+    private static void transferir(Cliente cliente) {
         Telas.limparTela();
+        String contaDestino = Telas.lerValor(" Conta destino: ");
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
-        if(valor <= 0){
+        if (valor <= 0) {
             Telas.mensagem("Valor inválido!", true);
             return;
         }
-        if(valor > cliente.getSaldo()){
+        if (valor > cliente.getSaldo()) {
             Telas.mensagem("Saldo insuficiênte", false);
             return;
         }
-        else if(!numeroConta.matches("\\d{4})){
-    }      
+        Telas.mensagem("Número da conta inválido", true);
+        return;
+    }
+
+    boolean ok = central.transferir(cliente, contaDestino, valor);
+
+    if(ok)
+    {
+        Telas.mensagem(String.format("Transferência R$ %.2f realizada com sucesso!\nSaldo atual: %.2f", valor, cliente.getSaldo()), false);
+        return;
+    }else{
+
+        Telas.mensagem("Erro ao realizar transferência!",true);
+
+
+    }
+
+     
+
+}  
+
+
