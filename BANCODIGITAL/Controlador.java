@@ -75,34 +75,36 @@ public class Controlador {
 
         String numeroConta = Telas.lerTexto("Número da conta");
         int tentativas = 0;
-        while(tentativas <= 3){
+        while (tentativas <= 3) {
 
-            String senha = Telas.lerTexto("Senha: " );
+            String senha = Telas.lerTexto("Senha: ");
+            Telas.limparTela();
+            System.out.println("Verificando credênciais...");
             Cliente cliente = new Cliente();
             String status = central.login(numeroConta, senha, cliente);
 
-            switch(status){
+            switch (status) {
                 case "OK":
                     menuDaConta(cliente);
                     return;
-                case "CONTA_INEXISTENTE": 
-                  Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
+                case "CONTA_INEXISTENTE":
+                    Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
                     return;
                 case "BLOQUEADA":
                     Telas.mensagem("Conta bloqueada devido a múltiplas tentativas", false);
                     return;
                 case "SENHA_INCORRETA":
-                    tentativas ++;
-                    if(tentativas < 3){
-                         Telas.mensagem("Senha incorreta. Tentativa" + tentativas + " de 3.", false);
+                    tentativas++;
+                    if (tentativas < 3) {
+                        Telas.mensagem("Senha incorreta. Tentativa" + tentativas + " de 3.", false);
                     }
-                   
-                    break;  
+
+                    break;
                 default:
-                  Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);                      
+                    Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);
                     return;
             }
-           
+
         }
     }
 
@@ -110,71 +112,86 @@ public class Controlador {
 
         int menu;
 
-        do{
+        do {
 
             Telas.menuConta(cliente.getNome(), cliente.getSaldo());
             menu = Telas.lerOpcao();
 
             switch (menu) {
 
-            case 1:
-                Telas.mensagem("O deposito será impresso", false);
-                break;
-            case 2:
-               Telas.mensagem("O saque será impresso", false);
-                break;
-            case 3:
-                Telas.mensagem("A transferência será impressa", false);
-                break;
-            case 4:
-                Telas.mensagem("O Extrato será impresso", false);
-                break;
-            case 5:
-                Telas.mensagem("Até logo"  +  cliente.getNome(), false);
-                break;
-            default:
-                Telas.mensagem("Opção inválida", true);    
-        }
-            
+                case 1:
+                    Telas.mensagem("O deposito será impresso", false);
+                    depositar(cliente);
+                    break;
+                case 2:
+                    Telas.mensagem("O saque será impresso", false);
+                    sacar(cliente);
+                    break;
+                case 3:
+                    Telas.mensagem("A transferência será impressa", false);
+                    transferir(cliente);
+                    break;
+                case 4:
+                    Telas.mensagem("O Extrato será impresso", false);
+                    break;
+                case 5:
+                    Telas.mensagem("Até logo" + cliente.getNome(), false);
+                    break;
+                default:
+                    Telas.mensagem("Opção inválida", true);
+            }
 
-        }while(menu != 5);
+        } while (menu != 5);
     }
 
-    //operações
-    private static void depositar(Cliente cliente){
+    // operações
+    private static void depositar(Cliente cliente) {
         Telas.limparTela();
         double valor = Telas.lerValor("Valor a serdepositado: R$");
 
-        if(valor <= 0){
+        if (valor <= 0) {
             Telas.mensagem("Valor inválido!", true);
             return;
         }
         boolean ok = central.depositar(cliente, valor);
 
-        if(ok){
-           Telas.mensagem( String.format("Depósito de R$ %.2f realizado com sucesso!", valor, false));
-        }
-        else{
-          Telas.mensagem("Erro ao realizar o depósito!", true);
+        if (ok) {
+            Telas.mensagem(String.format("Depósito de R$ %.2f realizado com sucesso!", valor), false);
+        } else {
+            Telas.mensagem("Erro ao realizar o depósito!", true);
         }
     }
-    private static void sacar(Cliente cliente){
+
+    private static void sacar(Cliente cliente) {
         Telas.limparTela();
         double valor = Telas.lerValor("Valor que deseja sacar: R$");
-        if(valor <=0){
-           Telas.mensagem("Valor inválido!", true);
-           return;
+        if (valor <= 0) {
+            Telas.mensagem("Valor inválido!", true);
+            return;
         }
-        if(valor > cliente.getSaldo()){
+        if (valor > cliente.getSaldo()) {
             Telas.mensagem("Saldo insuficiênte!", true);
         }
         boolean ok = central.sacar(cliente, valor);
-        if(ok){
-            Telas.mensagem(String.format("Saque R$ %.2f realizado com sucesso!\nSaldo atual: R$%.2f ", valor, cliente.getSaldo(), false));
-        }
-        else{
+        if (ok) {
+            Telas.mensagem(String.format("Saque R$ %.2f realizado com sucesso!\nSaldo atual: R$%.2f ", valor,
+                    cliente.getSaldo()), false);
+        } else {
             Telas.mensagem("Erro ao realizar o saque!", true);
         }
     }
 
-}
+    private static void transferir(Cliente cliente, int numeroConta, double valor){
+        Telas.limparTela();
+        double valor = Telas.lerValor("Valor que deseja transferir: R$");
+
+        if(valor <= 0){
+            Telas.mensagem("Valor inválido!", true);
+            return;
+        }
+        if(valor > cliente.getSaldo()){
+            Telas.mensagem("Saldo insuficiênte", false);
+            return;
+        }
+        else if(!numeroConta.matches("\\d{4})){
+    }      
