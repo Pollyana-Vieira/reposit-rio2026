@@ -75,7 +75,7 @@ public class Controlador {
 
         String numeroConta = Telas.lerTexto("Número da conta");
         int tentativas = 0;
-        while(tentativas > 3){
+        while(tentativas <= 3){
 
             String senha = Telas.lerTexto("Senha: " );
             Cliente cliente = new Cliente();
@@ -83,7 +83,7 @@ public class Controlador {
 
             switch(status){
                 case "OK":
-                    Telas.mensagem("Login bem-sucedido! Bem-Vindo!, "+ cliente.getNome() + "!",  false);
+                    menuDaConta(cliente);
                     return;
                 case "CONTA_INEXISTENTE": 
                   Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
@@ -101,9 +101,6 @@ public class Controlador {
                 default:
                   Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);                      
                     return;
-
-                   
-
             }
            
         }
@@ -111,28 +108,29 @@ public class Controlador {
 
     public static void menuDaConta(Cliente cliente) {
 
-        int menu = Telas.lerOpcao();
+        int menu;
 
         do{
 
             Telas.menuConta(cliente.getNome(), cliente.getSaldo());
+            menu = Telas.lerOpcao();
 
             switch (menu) {
 
             case 1:
-                Telas.mensagem("O deposito será impresso");
+                Telas.mensagem("O deposito será impresso", false);
                 break;
             case 2:
-                Telas.mensagem("O saque será impresso");
+               Telas.mensagem("O saque será impresso", false);
                 break;
             case 3:
-                Telas.mensagem("A transferência será impressa");
+                Telas.mensagem("A transferência será impressa", false);
                 break;
             case 4:
-                Telas.mensagem("O Extrato será impresso");
+                Telas.mensagem("O Extrato será impresso", false);
                 break;
             case 5:
-                Telas.mensagem("Até logo" + cliente.getNome());
+                Telas.mensagem("Até logo"  +  cliente.getNome(), false);
                 break;
             default:
                 Telas.mensagem("Opção inválida", true);    
@@ -140,9 +138,25 @@ public class Controlador {
             
 
         }while(menu != 5);
+    }
 
-       
+    //operações
+    private static void depositar(Cliente cliente){
+        Telas.limparTela();
+        double valor = Telas.lerValor("Valor a serdepositado: R$");
 
+        if(valor <= 0){
+            Telas.mensagem("Valor inválido!", true);
+            return;
+        }
+        boolean ok = central.depositar(cliente, valor);
+
+        if(ok){
+           Telas.mensagem( String.format("Depósito de R$ %.2f realizado com sucesso!", valor, false));
+        }
+        else{
+          Telas.mensagem("Erro ao realizar o depósito!", true);
+        }
     }
 
 }
