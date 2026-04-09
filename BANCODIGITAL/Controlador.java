@@ -116,8 +116,8 @@ public class Controlador {
         int menu;
 
         do {
-            
-            atualizarSaldo(cliente);
+
+            central.atualizarSaldo(cliente);
 
             Telas.menuConta(cliente.getNome(), cliente.getSaldo());
             menu = Telas.lerOpcao();
