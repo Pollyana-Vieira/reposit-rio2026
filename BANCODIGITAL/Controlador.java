@@ -213,16 +213,16 @@ public class Controlador {
 
     }
     private static void verExtrato(Cliente cliente){
-        Telas.limpartelas();
+        Telas.limparTela();
+        String extrato = "";
 
-        private static final DateTimeFormatter FORMATADOR =DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        List<String> extrato = new ArrayList<>(){
-            for(Extrato e: extrato){
-                historico();
-
-
+            for(String linha: central.getExtrato(cliente)){
+                extrato += linha +"\n";
             }
+            Telas.mensagem(extrato, false);
+        
+
+            
                
 
         }
