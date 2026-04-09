@@ -116,6 +116,8 @@ public class Controlador {
         int menu;
 
         do {
+            
+            atualizarSaldo(cliente);
 
             Telas.menuConta(cliente.getNome(), cliente.getSaldo());
             menu = Telas.lerOpcao();
@@ -186,7 +188,7 @@ public class Controlador {
 
     private static void transferir(Cliente cliente) {
         Telas.limparTela();
-        String contaDestino = Telas.lerValor(" Conta destino: ");
+        String contaDestino = Telas.lerValor("N° Conta destino: ");
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
         if (valor <= 0) {
@@ -204,7 +206,8 @@ public class Controlador {
 
     if(ok)
     {
-        Telas.mensagem(String.format("Transferência R$ %.2f realizada com sucesso!\nSaldo atual: %.2f", valor, cliente.getSaldo()), false);
+        Telas.mensagem(String.format("Transferência R$ %.2f realizada com sucesso!\nSaldo atual: %.2f", valor,
+                cliente.getSaldo()), false);
         return;
     }else
     {
@@ -212,20 +215,24 @@ public class Controlador {
         Telas.mensagem("Erro ao realizar transferência!", true);
 
     }
+
     private static void verExtrato(Cliente cliente){
         Telas.limparTela();
-        String extrato = "";
+        List<String> linha = central.getExtrato(cliente);
+        StringBuilder extrato = new StringBuilder();
 
-            for(String linha: central.getExtrato(cliente)){
-                extrato += linha +"\n";
-            }
-            Telas.mensagem(extrato, false);
+        for(String linhas: linha){
+            extrato.append(linha).append("\n");
+        }
+        extrato.append("==================================");
+        Telas.mensagem(extrato.toString(), false);
         
+
+          
 
             
                
 
-        }
-
     }
+
 }
