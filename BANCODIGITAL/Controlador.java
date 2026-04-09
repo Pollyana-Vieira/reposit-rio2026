@@ -1,3 +1,6 @@
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 public class Controlador {
     private static final CentralBancaria central = new CentralBancaria();
 
@@ -120,19 +123,19 @@ public class Controlador {
             switch (menu) {
 
                 case 1:
-                    
+
                     depositar(cliente);
                     break;
                 case 2:
-                    
+
                     sacar(cliente);
                     break;
                 case 3:
-                    
+
                     transferir(cliente);
                     break;
                 case 4:
-                    Telas.mensagem("O Extrato será impresso", false);
+                    verExtrato(cliente);
                     break;
                 case 5:
                     Telas.mensagem("Até logo" + cliente.getNome(), false);
@@ -194,7 +197,7 @@ public class Controlador {
             Telas.mensagem("Saldo insuficiênte", false);
             return;
         }
-    
+
     }
 
     boolean ok = central.transferir(cliente, contaDestino, valor);
@@ -203,15 +206,25 @@ public class Controlador {
     {
         Telas.mensagem(String.format("Transferência R$ %.2f realizada com sucesso!\nSaldo atual: %.2f", valor, cliente.getSaldo()), false);
         return;
-    }else{
+    }else
+    {
 
-        Telas.mensagem("Erro ao realizar transferência!",true);
-
+        Telas.mensagem("Erro ao realizar transferência!", true);
 
     }
+    private static void verExtrato(Cliente cliente){
+        Telas.limpartelas();
 
-     
+        private static final DateTimeFormatter FORMATADOR =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-}  
 
 
+            List<String> extrato = new ArrayList<>(){
+                if()
+               
+
+            }
+
+    }
+}
