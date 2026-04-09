@@ -215,16 +215,17 @@ public class Controlador {
     private static void verExtrato(Cliente cliente){
         Telas.limpartelas();
 
-        private static final DateTimeFormatter FORMATADOR =
-            DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        private static final DateTimeFormatter FORMATADOR =DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        List<String> extrato = new ArrayList<>(){
+            for(Extrato e: extrato){
+                historico();
 
-
-            List<String> extrato = new ArrayList<>(){
-                if()
-               
 
             }
+               
+
+        }
 
     }
 }
