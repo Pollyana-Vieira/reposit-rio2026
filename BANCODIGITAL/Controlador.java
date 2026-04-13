@@ -1,4 +1,3 @@
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Controlador {
@@ -14,7 +13,7 @@ public class Controlador {
             Telas.limparTela();
             nomeInformado = Telas.lerTexto("Digite o nome completo: ");
             if (!cliente.setNome(nomeInformado)) {
-                Telas.mensagem("Nome invalido!", true);
+                Telas.mensagem("Nome inválido!", true);
             }
         } while (!cliente.setNome(nomeInformado));
 
@@ -24,7 +23,7 @@ public class Controlador {
             Telas.limparTela();
             cpfInformado = Telas.lerTexto("Digite o CPF: ");
             if (!cliente.setCpf(cpfInformado)) {
-                Telas.mensagem("CPF invalido.", true);
+                Telas.mensagem("CPF inválido.", true);
             }
         } while (!cliente.setCpf(cpfInformado));
 
@@ -34,11 +33,11 @@ public class Controlador {
             Telas.limparTela();
             data = Telas.lerTexto("Data de nascimento (dd/mm/aaaa)");
             if (!cliente.setDataNascimento(data)) {
-                Telas.mensagem("Data de nascimento invalida.", true);
+                Telas.mensagem("Data de nascimento inválida.", true);
             }
         } while (!cliente.setDataNascimento(data));
 
-        // Enviando CentralBancaria
+        // Envia à CentralBancaria
         System.out.println("Enviando dados para a central...");
         String resultado = central.cadastrar(
                 cliente.getNome(),
@@ -60,12 +59,12 @@ public class Controlador {
 
         String senha, confirma;
         do {
-            senha = Telas.lerTexto("Crie sua senha (4 di­gitos numericos)");
+            senha = Telas.lerTexto("Crie sua senha (4 dígitos numéricos)");
             confirma = Telas.lerTexto("Confirme sua senha");
             if (!senha.equals(confirma)) {
                 Telas.mensagem("Senhas não conferem. Tente novamente.", true);
             } else if (!senha.matches("\\d{4}")) {
-                Telas.mensagem("Senha invalida. Use exatamente 4 digitos numericos.", true);
+                Telas.mensagem("Senha inválida. Use exatamente 4 dígitos numéricos.", true);
             }
         } while (!senha.equals(confirma) || !senha.matches("\\d{4}"));
 
@@ -75,120 +74,138 @@ public class Controlador {
 
     public static void acessarConta() {
         Telas.cabecalhoLogin();
-
         String numeroConta = Telas.lerTexto("Número da conta");
         int tentativas = 0;
-        while (tentativas <= 3) {
-
+        while (tentativas < 3) {
             String senha = Telas.lerTexto("Senha: ");
             Telas.limparTela();
-            System.out.println("Verificando credênciais...");
+            System.out.println("Verificando credenciais...");
             Cliente cliente = new Cliente();
             String status = central.login(numeroConta, senha, cliente);
 
             switch (status) {
                 case "OK":
-                    menuDaConta(cliente);
-                    return;
+                    menuConta(cliente, senha);
                 case "CONTA_INEXISTENTE":
                     Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
                     return;
                 case "BLOQUEADA":
-                    Telas.mensagem("Conta bloqueada devido a múltiplas tentativas", false);
+                    Telas.mensagem("Conta bloqueada devido a múltiplas tentativas de login falhadas.", true);
                     return;
                 case "SENHA_INCORRETA":
                     tentativas++;
                     if (tentativas < 3) {
-                        Telas.mensagem("Senha incorreta. Tentativa" + tentativas + " de 3.", false);
+                        Telas.mensagem("Senha incorreta. Tentativa " + tentativas + " de 3.", false);
                     }
-
                     break;
                 default:
-                    Telas.mensagem("Erro de comunicação. Tente novamente mais tarde", true);
+                    Telas.mensagem("Erro de comunicação. Tente novamente mais tarde.", true);
                     return;
             }
 
         }
+
     }
 
-    public static void menuDaConta(Cliente cliente) {
-
-        int menu;
-
+    public static void menuConta(Cliente cliente, String senha) {
+        int opcao;
         do {
-
-            central.atualizarSaldo(cliente);
-
+            central.atualizarSaldo(cliente); // <-- busca saldo atual do servidor
             Telas.menuConta(cliente.getNome(), cliente.getSaldo());
-            menu = Telas.lerOpcao();
+            opcao = Telas.lerOpcao();
 
-            switch (menu) {
-
+            switch (opcao) {
                 case 1:
-
                     depositar(cliente);
                     break;
                 case 2:
-
-                    sacar(cliente);
+                    sacar(cliente, senha);
                     break;
                 case 3:
-
-                    transferir(cliente);
+                    transferir(cliente, senha);
                     break;
                 case 4:
                     verExtrato(cliente);
                     break;
                 case 5:
-                    Telas.mensagem("Até logo" + cliente.getNome(), false);
+                    Telas.mensagem("Até logo, " + cliente.getNome() + "!", false);
                     break;
                 default:
-                    Telas.mensagem("Opção inválida", true);
+                    Telas.mensagem("Opção inválida.", true);
             }
 
-        } while (menu != 5);
+        } while (opcao != 5);
     }
 
-    // operações
+    // Operações
+
     private static void depositar(Cliente cliente) {
         Telas.limparTela();
-        double valor = Telas.lerValor("Valor a serdepositado: R$");
+        double valor = Telas.lerValor("Valor a ser depositado: R$");
 
         if (valor <= 0) {
             Telas.mensagem("Valor inválido!", true);
             return;
         }
-        boolean ok = central.depositar(cliente, valor);
 
+        boolean ok = central.depositar(cliente, valor);
         if (ok) {
-            Telas.mensagem(String.format("Depósito de R$ %.2f realizado com sucesso!", valor), false);
+            Telas.mensagem(
+                    String.format("Depósito de R$ %.2f realizado com sucesso!", valor),
+                    false);
         } else {
             Telas.mensagem("Erro ao realizar o depósito!", true);
         }
     }
 
-    private static void sacar(Cliente cliente) {
+    private static void sacar(Cliente cliente, String senha) {
         Telas.limparTela();
+
+        //pedindo a senha antes de sacar
+        
+       
+        String confirmarSenha;
+        if(!confirmarSenha(senha)){
+            Telas.mensagem("Senha inválida! Saque cancelado!", true);
+
+        }
+        
+
         double valor = Telas.lerValor("Valor que deseja sacar: R$");
+
         if (valor <= 0) {
             Telas.mensagem("Valor inválido!", true);
             return;
         }
         if (valor > cliente.getSaldo()) {
-            Telas.mensagem("Saldo insuficiênte!", true);
+            Telas.mensagem("Saldo insuficiente!", true);
+            return;
         }
+        
+
         boolean ok = central.sacar(cliente, valor);
         if (ok) {
-            Telas.mensagem(String.format("Saque R$ %.2f realizado com sucesso!\nSaldo atual: R$%.2f ", valor,
-                    cliente.getSaldo()), false);
+            Telas.mensagem(
+                    String.format("Saque de R$ %.2f realizado com sucesso!\nSaldo atual: R$ %.2f",
+                            valor,
+                            cliente.getSaldo()),
+                    false);
         } else {
             Telas.mensagem("Erro ao realizar o saque!", true);
         }
     }
 
-    private static void transferir(Cliente cliente) {
+    private static void transferir(Cliente cliente, String senha) {
         Telas.limparTela();
-        String contaDestino = Telas.lerValor("N° Conta destino: ");
+
+        String confirmarSenha;
+        if(!confirmarSenha(senha)){
+            Telas.mensagem("Senha inválida! Transferência cancelado!", true);
+            
+        }
+        
+
+        String contaDestino = Telas.lerTexto("Nº Conta Destino: ");
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
         if (valor <= 0) {
@@ -196,43 +213,44 @@ public class Controlador {
             return;
         }
         if (valor > cliente.getSaldo()) {
-            Telas.mensagem("Saldo insuficiênte", false);
+            Telas.mensagem("Saldo insuficiente!", true);
             return;
         }
 
+        boolean ok = central.transferir(cliente, contaDestino, valor);
+
+
+        if (ok) {
+            Telas.mensagem(
+                    String.format(
+                            "Transferência de R$ %.2f para a conta %s realizada com sucesso!\nSaldo atual: R$ %.2f",
+                            valor,
+                            contaDestino,
+                            cliente.getSaldo()),
+                    false);
+        } else {
+            Telas.mensagem("Erro ao realizar a transferência! Verifique o número da conta destino.", true);
+        }
     }
 
-    boolean ok = central.transferir(cliente, contaDestino, valor);
-
-    if(ok)
-    {
-        Telas.mensagem(String.format("Transferência R$ %.2f realizada com sucesso!\nSaldo atual: %.2f", valor,
-                cliente.getSaldo()), false);
-        return;
-    }else
-    {
-
-        Telas.mensagem("Erro ao realizar transferência!", true);
-
-    }
-
-    private static void verExtrato(Cliente cliente){
+    private static void verExtrato(Cliente cliente) {
         Telas.limparTela();
-        List<String> linha = central.getExtrato(cliente);
+        List<String> linhas = central.getExtrato(cliente);
         StringBuilder extrato = new StringBuilder();
-
-        for(String linhas: linha){
+        extrato.append("========= EXTRATO DE MOVIMENTAÇÕES =========\n");
+        for (String linha : linhas) {
             extrato.append(linha).append("\n");
         }
-        extrato.append("==================================");
-        Telas.mensagem(extrato.toString(), false);
-        
+        extrato.append("============================================");
 
-          
+        Telas.mensagem(
+                extrato.toString(),
+                false);
 
-            
-               
-
+    }
+    private static boolean confirmarSenha(String senha){
+        String senhaInformada = Telas.lerTexto("Confirme sua senha: ");
+        return senha != null && senha.equals(senhaInformada);
     }
 
 }

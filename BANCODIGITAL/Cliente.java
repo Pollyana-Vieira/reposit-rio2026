@@ -20,6 +20,7 @@ public class Cliente {
     private boolean bloqueada;
     private int tentativasFalhas;
     private Conta conta;
+    
 
     // GETTERS
 
@@ -49,6 +50,9 @@ public class Cliente {
     public int getTentativasFalhas() {
         return tentativasFalhas;
     }
+   // public boolean getSenha(){
+      //  return senha;
+   // }
 
     // SETTERS
 
