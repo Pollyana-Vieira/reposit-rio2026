@@ -17,7 +17,7 @@ public class Transacao {
     private double valor;
     private LocalDate data;
 
-    public Transacao(String tipo, double valor, LocalDate data) {
+    public Transacao(String tipo, double valor, LocalDate data, String nome, String numeroDaConta) {
         this.tipo  = tipo;
         this.valor = valor;
         this.data  = data;
@@ -34,6 +34,12 @@ public class Transacao {
     public LocalDate getData() {
         return data;
     }
+    //public String getNome(){
+        return Nome;
+   // }
+   // public String getNumConta(){
+      return número da conta;
+   // }
 
     /* Representação formatada para exibição no extrato. */
     @Override
