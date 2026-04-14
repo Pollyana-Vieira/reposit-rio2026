@@ -35,10 +35,10 @@ public class Transacao {
         return data;
     }
     //public String getNome(){
-        return Nome;
+       // return Nome;
    // }
    // public String getNumConta(){
-      return número da conta;
+      //return =número da conta;
    // }
 
     /* Representação formatada para exibição no extrato. */

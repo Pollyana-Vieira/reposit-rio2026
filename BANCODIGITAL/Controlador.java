@@ -86,6 +86,7 @@ public class Controlador {
             switch (status) {
                 case "OK":
                     menuConta(cliente, senha);
+                   return; 
                 case "CONTA_INEXISTENTE":
                     Telas.mensagem("Conta inexistente. Verifique o número e tente novamente.", true);
                     return;
@@ -206,6 +207,7 @@ public class Controlador {
         
 
         String contaDestino = Telas.lerTexto("Nº Conta Destino: ");
+        
         
 
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
