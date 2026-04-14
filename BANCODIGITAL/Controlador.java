@@ -206,6 +206,7 @@ public class Controlador {
         
 
         String contaDestino = Telas.lerTexto("Nº Conta Destino: ");
+        
         double valor = Telas.lerValor("Valor que deseja transferir: R$");
 
         if (valor <= 0) {
