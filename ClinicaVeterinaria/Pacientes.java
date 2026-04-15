@@ -7,7 +7,7 @@ public class Pacientes {
         private String nome;
         private String especie;
 
-        public static String Animal(String nome, String especie){
+        public  String Animal(String nome, String especie){
           
             this.nome = nome;
             this.espécie = especie;
