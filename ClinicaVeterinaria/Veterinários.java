@@ -5,7 +5,7 @@ public class Veterinários{
 
     public static void Funcionários(String nomes){
 
-        List<String> Veterinários = new List<>();
+        List<String> veterinários = new List<>();
        
         //adicionar
         veterinários.add("Karla");

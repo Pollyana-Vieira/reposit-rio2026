@@ -2,17 +2,20 @@ import java.util.*;
 
 public class Pacientes {
 
-    public static String Animal(String){
+    private String nome;
+    private String especie;
 
-      private String nome;
-      private String especie;
-    }
-
-    public String Animal(String nome, String especie) {
+    public Pacientes(String nome, String especie) {
 
         this.nome = nome;
-        this.espécie = especie;
+        this.especie = especie;
 
+    }
+    public String getNome(){
+        return nome;
+    }
+    public String getEspecie(){
+        return especie;
     }
 
     void ExibirDadosDoPaciente() {

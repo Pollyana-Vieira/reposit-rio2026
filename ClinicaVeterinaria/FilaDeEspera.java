@@ -1,10 +1,10 @@
-import java.ArrayDeque;
-import java.Queue;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class FilaDeEspera{
 
     public static void Atendidos(String nome, int quantidade){
-        List <String> Fila = new ArrayDeque<>();
+        Queue<String> fila = new ArrayDeque<>();
 
         //adicionar clientes
 
@@ -14,16 +14,31 @@ public class FilaDeEspera{
         fila.add("Quarto paciente");
 
         //vendo a fila sem remover
-        System.out.printl(fila.peek());
+        public void verFilaDeEspera(String fila){
+           
+            if(!fila.isEmpty()){
+              System.out.println(fila.peek()); //peek() é para ver o topo da fila sem remover.
+            }
+            else{
+              System.out.println("A fila está vazia");
+            }
+        }
+        public void removerPacienteAtendido(String fila){
 
+            if(!fila.isEmpty()){ //Empty é vazio
+              System.out.println(fila.poll()); //remove() é usado para remover o elemento em fila.
+            }
+           else{
+              System.out.println("A fila está vazia");
+            }
+        }
+        public 
+
+
+        
+        
         //tamanho
         System.out.println(fila.size());
-
-        //ver se está vazio
-        System.out.println(fila.isEmpty());
-
-        //removendo
-        System.out.println(fila.remove());
 
 
     }
