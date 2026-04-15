@@ -1,10 +1,10 @@
-import.java.ArrayDeque;
-import.java.Queue;
+import java.ArrayDeque;
+import java.Queue;
 
 public class FilaDeEspera{
 
     public static void Atendidos(String nome, int quantidade){
-        List<String> Fila = new ArrayDeque<>();
+        List <String> Fila = new ArrayDeque<>();
 
         //adicionar clientes
 

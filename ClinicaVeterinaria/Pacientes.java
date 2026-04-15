@@ -1,15 +1,21 @@
-import java.util.*
+import java.util.*;
 
 public class Pacientes {
     
-    public static void Animal(String nome){
+    public static String Animal(String){
 
         private String nome;
-        private String espécie;
+        private String especie;
 
-        public static void Animais(){
+        public static String Animal(String nome, String especie){
           
-            //
+            this.nome = nome;
+            this.espécie = especie;
+
+        }
+        void ExibirDadosDoPaciente(){
+            System.out.println("Nome" + nome);
+            System.out.println("Espécie" + especie);
 
         }
     }

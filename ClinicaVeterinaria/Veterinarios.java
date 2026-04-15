@@ -15,9 +15,9 @@ public class Veterinários{
 
         //percorrer a minha lista de funcionários disponíveis
         for(String nome : veterinários){
-            System.out.println("")
-
-
+            System.out.println("nome");
         }
+
+        
     }
 }
