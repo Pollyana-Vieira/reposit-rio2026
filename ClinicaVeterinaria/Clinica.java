@@ -31,6 +31,24 @@ public class Clinica {
             
         
     }
+    public void verFila(){
+        System.out.println("Fila de espera:");
+        for(Animal a : filaDeEspera){
+            System.out.println(a.toString());
+        }
+    }
+    public void verHistoricoDeAtendimento(){
+        System.out.println("Histórico de atendimento:");
+        for(Animal a : historicoDeAtendimento){
+            System.out.println(a.toString());
+        }
+    }
+    public void verVeterinarios(){
+        System.out.println("Veterinários:");
+        for(Animal a : veterinarios){
+            System.out.println(a.toString());
+        }
+    }
 
 
 }
