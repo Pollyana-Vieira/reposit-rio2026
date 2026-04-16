@@ -1,23 +1,39 @@
-import java.arrayList;
-import java.List;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Veterinários{
 
+    private String nome;
+    private String especialidade;
+    
+    public void veterinarios(String nome, String especialidade){
+        this.nome = nome;
+        this.especialidade = especialidade;
+    }
+     @Override
+    public String toString(){
+        return nome "-" + especialidade;
+    }
+
     public static void Funcionários(String nomes){
 
-        List<String> veterinários = new List<>();
+        List<veterinarios> lista = new ArrayList<>();
        
         //adicionar
-        veterinários.add("Karla");
-        veterinários.add("Paula");
-        veterinários.add("Erivaldo");
-        veterinários.add("Bruno");
+        lista.add(new Veterinarios("Karla", "Cirurgia"));
+        lista.add(new Veterinarios("Paula", "Oftamologia"));
+        lista.add(new Veterinarios("Erivaldo", "Oncologia")); //diagnóstico e tratamento de câncer;
+        lista.add(new Veterinarios("Bruno", "Cardiologia"));
 
-        //percorrer a minha lista de funcionários disponíveis
-        for(String nome : veterinários){
-            System.out.println("nome");
+        
+
+        public String toString(String nome, String especialidade){
+            return funcionarios["Nome" + nome, "Especialidade" + especialidade];
         }
 
         
     }
+   
+
+    
 }

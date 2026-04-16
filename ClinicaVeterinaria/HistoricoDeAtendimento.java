@@ -1,37 +1,30 @@
 import java.util.*;
 
-public class HistoricoDeAtendimento{
+public class HistoricoDeAtendimento {
 
-    public static void Atendidos(String nome, int quantidade){
+    public static void atendidos(String nome) {
 
         Stack<String> pilha = new Stack<>();
 
-        //add lista de atendidos
+        // add lista de atendidos
         pilha.push("Belinha");
         pilha.push("Mel");
         pilha.push("Spayk");
         pilha.push("Kira");
 
-        //ver topo
-        System.out.println(pilha.peek());
+        // ver topo
+        System.out.println("Topo da pilha: " + pilha.peek());
 
-        //remover
-        public void removerPacienteAtendido(String pilha){
+    }
+    //remover
+        public static void removerPacienteAtendido(String pilha){
 
             if(!pilha.isEmpty()){ //Empty é vazio
-              System.out.println(pilha.pop()); //pop() é usado para remover o elemento em pilha.
+              System.out.println("Removido:" + pilha.pop()); 
             }
            else{
               System.out.println("A pilha está vazia");
             }
         
 
-
-        }
-        
-
-       
-        //tamanho
-        System.out.println(pilha.size());
-    }
 }
