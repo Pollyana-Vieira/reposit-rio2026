@@ -10,13 +10,20 @@ public class Historico {
 
 
     }
-    public void remover(){
+    public String remover(){
 
-        pilha.pop();
+        if(!pilha.isEmpty()){
+            return pilha.pop();     
+
+        }else{
+           return null;
+        }
+
+        
     }
-    public void chamarHistorico(){
+    public void exibirHistorico(){
 
-       .
+        System.out.println(pilha);
     }
 
     
