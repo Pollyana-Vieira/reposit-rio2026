@@ -13,12 +13,12 @@ public class Pilha{
         livros.push("Nightfall");
         livros.push("Fire Night");
 
-        for(String l : livros){
+     
 
-           System.out.println(livros.peek());
-            System.out.println(l);
-        }
+        System.out.println(livros.peek());
+         System.out.println(livros);
         
+    
         
        
 
