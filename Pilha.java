@@ -15,8 +15,9 @@ public class Pilha{
 
      
 
-        System.out.println(livros.peek());
-         System.out.println(livros);
+        //System.out.println("Topo da pilha: " + livros.peek());
+        System.out.println("Topo da pilha: " + livros.pop());
+        System.out.println(livros);
         
     
         
