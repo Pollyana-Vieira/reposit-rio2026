@@ -44,7 +44,7 @@ public class Pedido {
         for (Produto produto : p) {
             produto.exibirPedido();
         }
-        System.out.println("Total: R$ %2f%n" + calcularTotal());
+        System.out.println("Total: R$ %2f%n" + calcularTotal())
     }
 
 }
