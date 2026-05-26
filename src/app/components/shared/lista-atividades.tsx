@@ -5,6 +5,7 @@ import {
   getAtividades,
   marcarComoConcluida,
   removerAtividade,
+  atualizarAtividade,
 } from "@/lib/api/local-storage";
 import { TypeTarefa } from "@/lib/types/interfaces";
 import { Assignment, Delete, Edit, PlaylistAdd } from "@mui/icons-material";
@@ -64,7 +65,11 @@ const ListaAtividades: React.FC = () => {
       });
       return;
     }
-    adicionarAtividade(valoresFormulario.texto);
+    if (valoresFormulario.id !== 0) {
+      atualizarAtividade(valoresFormulario.id, valoresFormulario.texto);
+    } else {
+      adicionarAtividade(valoresFormulario.texto);
+    }
     setAtividades(getAtividades());
     setValoresFormulario({
       id: 0,

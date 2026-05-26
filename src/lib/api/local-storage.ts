@@ -32,7 +32,7 @@ export const removerAtividade = (id: number): void => {
 // Atualiza o texto de uma atividade
 export const atualizarAtividade = (id: number, novoTexto: string): void => {
   const novasAtividades = getAtividades().map((atividade) =>
-    atividade.id === id ? { ...atividade, text: novoTexto } : atividade
+    atividade.id === id ? { ...atividade, texto: novoTexto } : atividade
   );
   saveAtividades(novasAtividades);
 };
