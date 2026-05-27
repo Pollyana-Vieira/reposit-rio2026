@@ -3,46 +3,66 @@
 import { TypeTarefa } from "../types/interfaces";
 
 export const getAtividades = (): TypeTarefa[] => {
-  const atividades = localStorage.getItem("atividades");
-  return atividades ? JSON.parse(atividades) : [];
+  try {
+    const atividades = localStorage.getItem("atividades");
+    if (!atividades) return [];
+    return JSON.parse(atividades) as TypeTarefa[];
+  } catch (err) {
+    console.warn("getAtividades: dado inválido no localStorage, removendo item.", err);
+    try {
+      localStorage.removeItem("atividades");
+    } catch (e) {
+      // ignore
+    }
+    return [];
+  }
 };
 
 // Salva as atividades no localStorage
-const saveAtividades = (atividades: TypeTarefa[]) => {
-  localStorage.setItem("atividades", JSON.stringify(atividades));
+const saveAtividades = (atividades: TypeTarefa[]): boolean => {
+  try {
+    localStorage.setItem("atividades", JSON.stringify(atividades));
+    return true;
+  } catch (err) {
+    console.error("saveAtividades: erro ao salvar no localStorage", err);
+    return false;
+  }
 };
 
 // Adiciona uma nova atividade
-export const adicionarAtividade = (text: string): void => {
+export const adicionarAtividade = (text: string): boolean => {
   const novasAtividades = [
     ...getAtividades(),
-    { id: Date.now(), texto: text, concluida: false },
+    { id: crypto.randomUUID(), texto: text, concluida: false },
   ];
-  saveAtividades(novasAtividades);
+  return saveAtividades(novasAtividades);
 };
 
 // Remove uma atividade pelo id
-export const removerAtividade = (id: number): void => {
+export const removerAtividade = (id: string): boolean => {
   const novasAtividades = getAtividades().filter(
     (atividade) => atividade.id !== id
   );
-  saveAtividades(novasAtividades);
+  return saveAtividades(novasAtividades);
 };
 
 // Atualiza o texto de uma atividade
-export const atualizarAtividade = (id: number, novoTexto: string): void => {
+export const atualizarAtividade = (
+  id: string,
+  novoTexto: string
+): boolean => {
   const novasAtividades = getAtividades().map((atividade) =>
     atividade.id === id ? { ...atividade, texto: novoTexto } : atividade
   );
-  saveAtividades(novasAtividades);
+  return saveAtividades(novasAtividades);
 };
 
 // Marca uma atividade como concluída
-export const marcarComoConcluida = (id: number): void => {
+export const marcarComoConcluida = (id: string): boolean => {
   const novasAtividades = getAtividades().map((atividade) =>
     atividade.id === id
       ? { ...atividade, concluida: !atividade.concluida }
       : atividade
   );
-  saveAtividades(novasAtividades);
+  return saveAtividades(novasAtividades);
 };

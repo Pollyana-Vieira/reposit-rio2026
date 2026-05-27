@@ -32,7 +32,7 @@ import React, { useEffect, useState } from "react";
 const ListaAtividades: React.FC = () => {
   const [atividades, setAtividades] = useState<TypeTarefa[]>([]);
   const [valoresFormulario, setValoresFormulario] = useState<TypeTarefa>({
-    id: 0,
+    id: "",
     texto: "",
     concluida: false,
   });
@@ -58,40 +58,58 @@ const ListaAtividades: React.FC = () => {
   }, []);
 
   const handleSalvar = () => {
-    if (!valoresFormulario.texto.trim()) {
-      setErrors({
-        ...errors,
-        texto: true,
-      });
+    const texto = valoresFormulario.texto.trim().replace(/\s+/g, " ");
+    if (!texto) {
+      setErrors({ ...errors, texto: true });
       return;
     }
-    if (valoresFormulario.id !== 0) {
-      atualizarAtividade(valoresFormulario.id, valoresFormulario.texto);
+    if (texto.length > 200) {
+      setErrors({ ...errors, texto: true });
+      // You can improve by setting a specific message state for helperText
+      return;
+    }
+    let success = true;
+    if (valoresFormulario.id !== "") {
+      success = atualizarAtividade(valoresFormulario.id, texto);
     } else {
-      adicionarAtividade(valoresFormulario.texto);
+      success = adicionarAtividade(texto);
+    }
+    if (!success) {
+      // handle save failure
+      console.error("Erro ao salvar atividade");
+      alert("Erro ao salvar atividade. Tente novamente.");
+      return;
     }
     setAtividades(getAtividades());
     setValoresFormulario({
-      id: 0,
+      id: "",
       texto: "",
       concluida: false,
     });
   };
 
-  const handleConcluir = (id: number) => {
-    marcarComoConcluida(id);
-    setAtividades((prev) =>
-      prev.map((atividade) =>
-        atividade.id === id
-          ? { ...atividade, concluida: !atividade.concluida }
-          : atividade
-      )
-    );
+  const handleConcluir = (id: string) => {
+    const success = marcarComoConcluida(id);
+    if (success) {
+      setAtividades((prev) =>
+        prev.map((atividade) =>
+          atividade.id === id
+            ? { ...atividade, concluida: !atividade.concluida }
+            : atividade
+        )
+      );
+    } else {
+      console.error("Erro ao alternar status da atividade");
+    }
   };
 
-  const handleRemover = (id: number) => {
-    removerAtividade(id);
-    setAtividades((prev) => prev.filter((atividade) => atividade.id !== id));
+  const handleRemover = (id: string) => {
+    const success = removerAtividade(id);
+    if (success) {
+      setAtividades((prev) => prev.filter((atividade) => atividade.id !== id));
+    } else {
+      console.error("Erro ao remover atividade");
+    }
   };
 
   const handleAtualizar = (atividade: TypeTarefa) => {
@@ -173,6 +191,7 @@ const ListaAtividades: React.FC = () => {
                         onClick={() => handleAtualizar(atividade)}
                         color="primary"
                         startIcon={<Edit />}
+                        aria-label="Editar atividade"
                         variant={
                           valoresFormulario.id === atividade.id
                           ? "contained"
@@ -183,6 +202,7 @@ const ListaAtividades: React.FC = () => {
                         onClick={() => handleRemover(atividade.id)}
                         color="error"
                         startIcon={<Delete />}
+                        aria-label="Remover atividade"
                         ></Button>
                       </ButtonGroup>
                       </TableCell>
@@ -213,7 +233,7 @@ const ListaAtividades: React.FC = () => {
                 onClick={handleSalvar}
                 sx={{ height: "100%" }}
                 >
-                {valoresFormulario.id !== 0 ? "Atualizar" : "Adicionar"}
+                {valoresFormulario.id !== "" ? "Atualizar" : "Adicionar"}
                 </Button>
               </Grid>
               </Grid>

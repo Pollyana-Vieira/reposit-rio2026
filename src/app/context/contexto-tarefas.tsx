@@ -6,7 +6,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 interface ContextoTarefasProps {
   tarefas: TypeTarefa[];
   adicionarTarefa: (texto: string) => void;
-  alternarStatusTarefa: (id: number) => void;
+  alternarStatusTarefa: (id: string) => void;
 }
 
 // Criando o contexto com valor padrão
@@ -21,11 +21,11 @@ export function ContextoTarefasProvider({ children }: { children: ReactNode }) {
   const adicionarTarefa = (texto: string) => {
     setTarefas((tarefasAntigas) => [
       ...tarefasAntigas,
-      { id: Date.now(), texto, concluida: false },
+      { id: crypto.randomUUID(), texto, concluida: false },
     ]);
   };
 
-  const alternarStatusTarefa = (id: number) => {
+  const alternarStatusTarefa = (id: string) => {
     setTarefas((tarefasAntigas) =>
       tarefasAntigas.map((tarefa) =>
         tarefa.id === id ? { ...tarefa, concluida: !tarefa.concluida } : tarefa

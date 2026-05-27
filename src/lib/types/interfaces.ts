@@ -1,5 +1,5 @@
 export interface TypeTarefa {
-  id: number;
+  id: string;
   texto: string;
   concluida: boolean;
 }
