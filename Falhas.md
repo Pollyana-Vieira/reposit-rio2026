@@ -66,3 +66,17 @@ Consequência:
 4. Adicionar `aria-label` em botões de ação.
 5. Remover ou justificar código não usado.
 6. Adicionar testes para CRUD de tarefas.
+
+
+## 1.Estado duplicado
+
+Nesse caso a lista é guardada em dois lugares diferentes(dois estados)
+
+-ContextoTarefasProvider
+-localStroge
+
+aqui quando uma atividade é adicionada na lista ela é salva em um desses estados, porém o outro não recebe essa atualização. Quando vai atualizar a lista as vezes pode aparecer uma lista antiga justamente porque foi percorrido o estado que tinha a lista antiga.
+
+## 2.localStorage sem try/catch
+
+Aqui o pode dar erro porque 
