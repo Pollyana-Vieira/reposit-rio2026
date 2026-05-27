@@ -79,4 +79,5 @@ aqui quando uma atividade é adicionada na lista ela é salva em um desses estad
 
 ## 2.localStorage sem try/catch
 
-Aqui o pode dar erro porque 
+Aqui o pode dar erro porque pode quebrar se estiver corrompido. Por isso tem que aplicar try/catch pois se não passar na validação vai aparecer que está inválido.
+
