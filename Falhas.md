@@ -81,3 +81,6 @@ aqui quando uma atividade é adicionada na lista ela é salva em um desses estad
 
 Aqui o pode dar erro porque pode quebrar se estiver corrompido. Por isso tem que aplicar try/catch pois se não passar na validação vai aparecer que está inválido.
 
+## 3.validação 
+
+Aqui o texto.trim() não valida o tamanho do texto, não remove caracteres inválidos. Isso pode atrapalhar travando o fluxo do código.
