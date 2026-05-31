@@ -72,6 +72,10 @@ const ListaAtividades: React.FC = () => {
       alert("A atividade deve ter pelo menos 2 caracteres");
       return;
     }
+    if (/^\d+$/.test(texto)){
+      alert("A atividade não pode conter só números");
+      return;
+    }
     let success = true;
     if (valoresFormulario.id !== "") {
       success = atualizarAtividade(valoresFormulario.id, texto);
