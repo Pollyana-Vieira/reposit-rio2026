@@ -73,7 +73,7 @@ const ListaAtividades: React.FC = () => {
       return;
     }
     if (/^\d+$/.test(texto)){
-      alert("A atividade não pode conter só números");
+      alert("A atividade não pode conter apenas números");
       return;
     }
     let success = true;
