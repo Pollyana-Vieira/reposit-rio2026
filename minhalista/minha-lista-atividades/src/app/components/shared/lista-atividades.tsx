@@ -68,6 +68,10 @@ const ListaAtividades: React.FC = () => {
       // You can improve by setting a specific message state for helperText
       return;
     }
+    if (texto.length > 2){
+      alert("A atividade deve ter pelo menos 2 caracteres");
+      return;
+    }
     let success = true;
     if (valoresFormulario.id !== "") {
       success = atualizarAtividade(valoresFormulario.id, texto);
