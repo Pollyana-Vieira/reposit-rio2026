@@ -31,6 +31,7 @@ import React, { useEffect, useState } from "react";
 
 const ListaAtividades: React.FC = () => {
   const [atividades, setAtividades] = useState<TypeTarefa[]>([]);
+  const [filtro, setFiltro] = useState("todas");
   const [valoresFormulario, setValoresFormulario] = useState<TypeTarefa>({
     id: "",
     texto: "",
@@ -130,6 +131,11 @@ const ListaAtividades: React.FC = () => {
     //   )
     // );
   };
+  const atividadesFiltradas = atividades.filter((atividade) => {
+  if (filtro === "concluidas") return atividade.concluida;
+  if (filtro === "pendentes") return !atividade.concluida;
+  return true;
+  });
 
   return (
     <>
@@ -153,6 +159,19 @@ const ListaAtividades: React.FC = () => {
             <CardContent>
               <Grid container spacing={2}>
               <Grid size={{ xs: 12 }}>
+              <ButtonGroup sx={{ mb: 2 }}>
+               <Button onClick={() => setFiltro("todas")}>
+               Todas
+               </Button>
+
+        <Button onClick={() => setFiltro("pendentes")}>
+    Pendentes
+  </Button>
+
+  <Button onClick={() => setFiltro("concluidas")}>
+    Concluídas
+  </Button>
+</ButtonGroup>
                 {/* Tabela de atividades */}
                 {atividades.length === 0 ? (
                 <Typography variant="body1" sx={{ ml: 2 }}>
