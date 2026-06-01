@@ -173,7 +173,7 @@ const ListaAtividades: React.FC = () => {
                </Button>
                </ButtonGroup>
                 {/* Tabela de atividades */}
-                {atividades.length === 0 ? (
+                {atividadesFiltradas.length === 0 ? (
                 <Typography variant="body1" sx={{ ml: 2 }}>
                   Nenhuma atividade encontrada.
                 </Typography>
