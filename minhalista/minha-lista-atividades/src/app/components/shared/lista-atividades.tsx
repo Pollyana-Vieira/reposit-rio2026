@@ -188,7 +188,7 @@ const ListaAtividades: React.FC = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {atividades.map((atividade, index) => (
+                    {atividadesFiltradas.map((atividade, index) => (
                     <TableRow
                       key={atividade.id}
                       sx={{
