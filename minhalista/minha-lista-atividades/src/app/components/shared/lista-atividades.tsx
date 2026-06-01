@@ -164,14 +164,14 @@ const ListaAtividades: React.FC = () => {
                Todas
                </Button>
 
-        <Button onClick={() => setFiltro("pendentes")}>
-    Pendentes
-  </Button>
+               <Button onClick={() => setFiltro("pendentes")}>
+               Pendentes
+               </Button>
 
-  <Button onClick={() => setFiltro("concluidas")}>
-    Concluídas
-  </Button>
-</ButtonGroup>
+               <Button onClick={() => setFiltro("concluidas")}>
+               Concluídas
+               </Button>
+               </ButtonGroup>
                 {/* Tabela de atividades */}
                 {atividades.length === 0 ? (
                 <Typography variant="body1" sx={{ ml: 2 }}>
