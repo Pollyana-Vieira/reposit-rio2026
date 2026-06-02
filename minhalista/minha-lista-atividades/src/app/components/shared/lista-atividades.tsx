@@ -133,7 +133,7 @@ const ListaAtividades: React.FC = () => {
     // );
   };
   const atividadesFiltradas = atividades.filter((atividades) => {
-  const correspondePesquisa = atividade.texto
+  const correspondePesquisa = atividades.texto
     .toLowerCase()
     .includes(pesquisa.toLowerCase());
 
@@ -141,8 +141,8 @@ const ListaAtividades: React.FC = () => {
     filtro === "todas"
       ? true
       : filtro === "concluidas"
-      ? atividade.concluida
-      : !atividade.concluida;
+      ? atividades.concluida
+      : !atividades.concluida;
 
    return correspondePesquisa && correspondeFiltro;
   });
