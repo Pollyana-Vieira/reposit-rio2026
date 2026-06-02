@@ -102,10 +102,10 @@ const ListaAtividades: React.FC = () => {
     const success = marcarComoConcluida(id);
     if (success) {
       setAtividades((prev) =>
-        prev.map((atividade) =>
-          atividade.id === id
-            ? { ...atividade, concluida: !atividade.concluida }
-            : atividade
+        prev.map((atividades) =>
+          atividades.id === id
+            ? { ...atividades, concluida: !atividades.concluida }
+            : atividades
         )
       );
     } else {
