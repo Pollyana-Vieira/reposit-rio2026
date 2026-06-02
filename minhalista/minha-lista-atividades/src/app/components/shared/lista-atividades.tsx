@@ -32,6 +32,7 @@ import React, { useEffect, useState } from "react";
 const ListaAtividades: React.FC = () => {
   const [atividades, setAtividades] = useState<TypeTarefa[]>([]);
   const [filtro, setFiltro] = useState("todas");
+  const [pesquisa, setPesquisa] = useState;
   const [valoresFormulario, setValoresFormulario] = useState<TypeTarefa>({
     id: "",
     texto: "",
