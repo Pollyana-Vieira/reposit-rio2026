@@ -132,7 +132,7 @@ const ListaAtividades: React.FC = () => {
     //   )
     // );
   };
-  const atividadesFiltradas = atividades.filter((atividade) => {
+  const atividadesFiltradas = atividades.filter((atividades) => {
   const correspondePesquisa = atividade.texto
     .toLowerCase()
     .includes(pesquisa.toLowerCase());
