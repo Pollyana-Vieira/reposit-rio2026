@@ -21,7 +21,7 @@ public class ItemDeVenda {
 
     @Override
     public String toString() {
-        return String.format("ItemDeVenda[produto=%s, quantidade=%d, subtotal=%.2f]",
+        return String.format("ItemVenda[produto=%s, quantidade=%d, subtotal=%.2f]",
                 produto != null ? produto.getNome() : "<sem produto>", quantidade, getSubtotal());
     }
 }
