@@ -45,7 +45,7 @@ public class Produto {
     }
 
     public static boolean cadastrar(String nome, String codigo, double preco, int estoque) {
-        if (nome == null || nome.isBlank() || codigo == null || codigo.isBlank() || preco < 0 || estoque < 0) {
+        if (nome == null || nome.isEmpty() || codigo == null || codigo.isEmpty() || preco < 0 || estoque < 0) {
             return false;
         }
 
@@ -62,7 +62,7 @@ public class Produto {
     }
 
     public static Produto buscarPorCodigo(String codigo) {
-        if (codigo == null || codigo.isBlank()) {
+        if (codigo == null || codigo.isEmpty()) {
             return null;
         }
 
@@ -77,7 +77,7 @@ public class Produto {
 
     public static List<Produto> buscarPorNome(String nome) {
         List<Produto> resultado = new ArrayList<>();
-        if (nome == null || nome.isBlank()) {
+        if (nome == null || nome.isEmpty()) {
             return resultado;
         }
 
