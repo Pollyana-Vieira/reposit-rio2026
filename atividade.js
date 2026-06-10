@@ -7,3 +7,10 @@ console.log(numero);
 let valor= 5 + "5";
 console.log(valor);
 console.log(typeof valor);
+
+//Trecho 3
+
+
+//Trecho 4
+let resultado= "100" - 50;
+console.log(resultado);
