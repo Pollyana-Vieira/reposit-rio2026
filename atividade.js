@@ -1,17 +1,24 @@
-// Trecho 1
-//let numero = 10;
-//numero = "dez";
-//console.log(numero);
+const readline = require("readline");
 
-//Trecho 2
-//let valor= 5 + "5";
-//console.log(valor);
-//console.log(typeof valor);
+//instanciamento do obj
 
-//Trecho 3
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
 
+async function main() {
 
-//Trecho 4
-let resultado= "100" - 50;
-console.log(resultado);
-console.log(typeof resultado);
+    let nome = await rl.question("Digite seu nome: ");
+    let idade = await rl.question("Digite sua idade: ");
+    let cidade = await rl.question("Digite sua cidade: ");
+
+    console.log("\nDados informados");
+    console.log("Nome: ", nome);
+    console.log("Idade: ", idade);
+    console.log("Cidade: ", cidade);
+    
+
+}
+
+rl.close();
