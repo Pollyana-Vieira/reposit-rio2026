@@ -1,6 +1,12 @@
 async function main(){
 
     let cidade = "Goiânia"; //ainâioG
-    console.log(cidade[7,6,5,4,3,2,1,0]);
+    let cidadeInvertido = "";
     
+    for(let i = cidade.length -1; i >= 0; i --){
+
+        nomeInvertido += cidade[i]; //+= anexa o texto ao final da String existente
+    }
+    console.log(nomeInvertido)
 }
+main();
