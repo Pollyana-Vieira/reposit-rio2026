@@ -1,7 +1,7 @@
 async function main(){
 
     let cidade = "Goiânia"; //ainâioG
-    let cidadeInvertido = "";
+    let cidadeInvertido = "ainâioG";
     
     for(let i = cidade.length -1; i >= 0; i --){
 
