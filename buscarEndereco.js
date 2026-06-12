@@ -9,4 +9,4 @@ async function buscarEndereco(cep){
     return endereco;
 
 }
-buscarEndereco("74970570");
+buscarEndereco("01001000");
