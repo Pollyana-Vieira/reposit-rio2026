@@ -7,12 +7,12 @@ class Pessoa(){
     this.genero;
 
     exibirInformacoesDePessoa(){
-        console.log(`Nome: ´, nome);
-        console.log(`Idade: ´, idade);
-        console.log(`Data de nascimento: ´, dataDeNascimento);
-        console.log(`CPF: ´, cpf);
+        console.log(`Nome: `, nome);
+        console.log(`Idade: `, idade);
+        console.log(`Data de nascimento: `, dataDeNascimento);
+        console.log(`CPF: `, cpf);
     }
 
 
 } 
-Pessoa();
+module.exports = Pessoa;
