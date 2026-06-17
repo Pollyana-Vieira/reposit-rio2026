@@ -20,7 +20,12 @@ class Cliente extends Pessoa(){
             return "A" + String(Cliente.tipoComum++);
         }
     }
-    
+    exibirDadosDeClientes(){
+        console.log(`Tipo: `, this.tipo);
+        console.log(`Senha: `, this.senha);
+    }
+    module.exports = Cliente;
+
 
 
 
