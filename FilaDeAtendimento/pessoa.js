@@ -6,6 +6,13 @@ class Pessoa(){
     this.cpf;
     this.genero;
 
+    exibirInformacoesDePessoa(){
+        console.log(`Nome: ´, nome);
+        console.log(`Idade: ´, idade);
+        console.log(`Data de nascimento: ´, dataDeNascimento);
+        console.log(`CPF: ´, cpf);
+    }
+
 
 } 
 Pessoa();
