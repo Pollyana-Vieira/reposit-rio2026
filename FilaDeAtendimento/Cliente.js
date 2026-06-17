@@ -1,4 +1,4 @@
-cost Pessoa = require("./Pessoa");
+const Pessoa = require("./Pessoa");
 
 class Cliente extends Pessoa(){
 
@@ -8,21 +8,15 @@ class Cliente extends Pessoa(){
     constructor(nome, cpf, tipo, senha){
         super(nome, cpf);
 
-        this.tipo = tipo;
+        this.tipo = tipo; //comum ou prioritário
         this.senha = senha;
     }
 
-    let tipoComum = A001;
-    let tipoPrioritario = P001;
-
-    console.log("\nDados do Cliente");
-    console.log("Nome", nome);
-    console.log("Idade", idade);
-    console.log("Data de nascimento", DataDeNascimento);
-    console.log("CPF", cpf);
-    console.log("Gênero", genero);
-    console.log("Tipo", tipoComum, tipoPrioritario);
-
+    senha(){
+        if(this.senha == tipoPrioritario){
+           return "P" 
+        }
+    }
 
 
 
