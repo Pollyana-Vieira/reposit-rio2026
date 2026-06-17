@@ -15,6 +15,6 @@ class Atendente extends Pessoa() {
     if else(this.matricula === undefined){
         return "Matricula não declarada";
     }
-    
+    module.exports = Pessoa;
 
 }
