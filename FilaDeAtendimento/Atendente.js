@@ -6,7 +6,7 @@ class Atendente extends Pessoa {
 
         super(nome, cpf, dataDeNascimento, idade);
 
-        this.matricula = 0000001;
+        this.matricula = matricula;
 
     }
     matricula() {
@@ -16,6 +16,10 @@ class Atendente extends Pessoa {
         else{
             return "Matricula não declarada";
         }
+    }
+    atendimentos(){
+        console.log("\nAtender Clientes");
+        console.log("Cliente: ", this.nome, this.tipo, this.senha);
     }
 
 }
