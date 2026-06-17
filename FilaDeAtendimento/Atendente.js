@@ -17,7 +17,7 @@ class Atendente extends Pessoa {
             return "Matricula não declarada";
         }
     }
-    atendimentos(){
+    atenderCliente(){
         console.log("\nAtender Clientes");
         console.log("Cliente: ", this.nome, this.tipo, this.senha);
     }
