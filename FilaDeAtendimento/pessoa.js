@@ -1,9 +1,10 @@
-const readline = require("readline");
-
 async function Pessoa(){
-    let nome = await rl.question("Digite seu nome: "); 
-    let idade = await rl.question("Digite sua idade: ");
-    let 
+    let nome = await ("Digite seu nome: "); 
+    let idade = await ("Digite sua idade: ");
+    let dataDeNascimento = await ("Digite sua data de nascimento: "); 
+    let cpf = await ("Digite seu CPF: ");
+    let genero = await ("Digite seu gênero: ");
+
 
 } 
 Pessoa();
