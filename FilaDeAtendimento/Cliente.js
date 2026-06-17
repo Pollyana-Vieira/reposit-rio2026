@@ -1,3 +1,4 @@
+cost Pessoa = require("./Pessoa");
 
 class Cliente extends Pessoa(){
 
