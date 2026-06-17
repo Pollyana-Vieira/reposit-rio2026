@@ -2,6 +2,16 @@ cost Pessoa = require("./Pessoa");
 
 class Cliente extends Pessoa(){
 
+    static tipoComum = 1;
+    static tipoPrioritario = 1;
+
+    constructor(nome, cpf, tipo, senha){
+        super(nome, cpf);
+
+        this.tipo = tipo;
+        this.senha = senha;
+    }
+
     let tipoComum = A001;
     let tipoPrioritario = P001;
 
