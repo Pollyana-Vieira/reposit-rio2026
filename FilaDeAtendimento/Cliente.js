@@ -14,7 +14,7 @@ class Cliente extends Pessoa(){
 
     senha(){
         if(this.senha == tipoPrioritario){
-           return "P" 
+           return "P", 
         }
     }
 
