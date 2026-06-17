@@ -4,13 +4,12 @@ class Pessoa(){
     this.idade;
     this.dataDeNascimento; 
     this.cpf;
-    this.genero;
 
     exibirInformacoesDePessoa(){
-        console.log(`Nome: `, nome);
-        console.log(`Idade: `, idade);
-        console.log(`Data de nascimento: `, dataDeNascimento);
-        console.log(`CPF: `, cpf);
+        console.log(`Nome: `, this.nome);
+        console.log(`Idade: `, this.idade);
+        console.log(`Data de nascimento: `, this.dataDeNascimento);
+        console.log(`CPF: `, this.cpf);
     }
 
 
