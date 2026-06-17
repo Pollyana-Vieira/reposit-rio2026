@@ -31,7 +31,8 @@ class Atendente extends Pessoa {
         console.log("CPF: ", this.cpf);
 
         console.log("\nLista De Atendidos");
-        console.log
+        
+        console.log("Cliente")
     }
 
 }
