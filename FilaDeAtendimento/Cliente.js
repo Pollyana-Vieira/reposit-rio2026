@@ -1,6 +1,5 @@
-const { constrainedMemory } = require("node:process");
 
-class cliente extends Pessoa(){
+class Cliente extends Pessoa(){
 
     let tipoComum = A001;
     let tipoPrioritario = P001;
