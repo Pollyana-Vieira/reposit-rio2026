@@ -24,11 +24,6 @@ class Cliente extends Pessoa(){
         console.log(`Tipo: `, this.tipo);
         console.log(`Senha: `, this.senha);
     }
-    module.exports = Cliente;
-
-
-
-
-    
-    
+ 
 }
+module.exports = Cliente;

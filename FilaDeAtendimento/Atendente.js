@@ -1,20 +1,22 @@
 const Pessoa = require("./Pessoa");
 
-class Atendente extends Pessoa() {
+class Atendente extends Pessoa {
 
-    constructor(matricula) {
+    constructor(nome, cpf, dataDeNascimento, idade, matricula) {
 
         super(nome, cpf, dataDeNascimento, idade);
 
         this.matricula = 0000001;
 
     }
-    if(this.matricula =! null){
-       return "Matricula" + string(Atendente.matricula++); 
+    matricula() {
+        if (this.matricula != null) {
+            return "Matricula" + string(Atendente.matricula++);
+        }
+        else{
+            return "Matricula não declarada";
+        }
     }
-    if else(this.matricula === undefined){
-        return "Matricula não declarada";
-    }
-    module.exports = Pessoa;
 
 }
+module.exports = Atendente;
