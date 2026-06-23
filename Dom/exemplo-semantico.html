@@ -143,6 +143,13 @@
       // tudo que estiver aqui dentro sea executado quando o form for enviado
       event.preventDefault(); //evita que a página seja carregada
       const campoNome = document.querySelector("#nome");
+
+      if(campoNome.value.trim() === ""){
+        //alert("Por favor, digite seu nome.");
+        saudacao.textContent = "Por favor, digite seu nome.";
+        return;
+      }
+      saudacao.textContent = `Olá, $(campoNome.value)!´;
     });
   </script>
 </body>
