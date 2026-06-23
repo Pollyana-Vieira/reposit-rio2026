@@ -138,6 +138,7 @@
     const form = document.querySelector("#form-nome");
     const sadacao = document.querySelector("#saudacao");
     const historico = document.querySelector("#historico");
+    let historicoSaudacao = "";
 
     form.addEventListener("submit", function(event){
       // tudo que estiver aqui dentro sea executado quando o form for enviado
@@ -149,7 +150,12 @@
         saudacao.textContent = "Por favor, digite seu nome.";
         return;
       }
-      saudacao.textContent = `Olá, ${campoNome.value}!`;
+      //saudacao.textContent = `Olá, ${campoNome.value}!`;
+
+      saudacao.textContent = "Olá, " + nome + "!";
+      historicoSaudacao += "\n" + saudacao.textContent;
+
+      historico.innerText = historicoSaudacao.trim();
 
 
     });
