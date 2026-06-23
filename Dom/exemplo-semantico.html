@@ -87,10 +87,10 @@
 
 <body>
   <header>
-    <h1>Bem-vindo!</h1> //<h1> = titúlo
+    <h1>Bem-vindo!</h1>
     <nav>
       <ul>
-        <li><a href="#cadastro">Cadastro</a></li> //<li> = elementos da lista
+        <li><a href="#cadastro">Cadastro</a></li> 
         <li><a href="#historico-section">Histórico</a></li>
         <li><a href="#sobre">Sobre</a></li>
       </ul>
@@ -102,7 +102,7 @@
       <p>Digite seu nome no campo abaixo e clique no botão para ser saudado.</p>
 
       <section id="cadastro">
-        <h2>Cadastro</h2> //<h2> subtítulo
+        <h2>Cadastro</h2>
         <form id="form-nome" action="https://google.com.br" method="POST">
           <label for="nome">Nome:</label>
           <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required />
@@ -139,7 +139,7 @@
     const sadacao = document.querySelector("#saudacao");
     const historico = document.querySelector("#historico");
 
-    form.addEventListener("submit", fuction(event){
+    form.addEventListener("submit", function(event){
       // tudo que estiver aqui dentro sea executado quando o form for enviado
       event.preventDefault(); //evita que a página seja carregada
       const campoNome = document.querySelector("#nome");
@@ -149,7 +149,7 @@
         saudacao.textContent = "Por favor, digite seu nome.";
         return;
       }
-      saudacao.textContent = `Olá, $(campoNome.value)!´;
+      saudacao.textContent = `Olá, ${campoNome.value}!`;
     });
   </script>
 </body>
